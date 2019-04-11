@@ -1,11 +1,19 @@
-<% provide :title, "ĐĂNG KÝ" %>
+<% provide(:title, "Đăng ký") %>
+<% provide :button_text, "Đăng ký" %>
 <% provide :url, signup_path %>
-<% provide :button_text, "ĐĂNG KÝ" %>
-<div class="container margin-top">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <h2>ĐĂNG KÝ</h2><br>
-      <%= render "form" %>
+<div class="row" id="session">
+  <div class="login-block">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 login-sec">
+          <h2 class="text-center">Đăng ký</h2>
+          <%= render "form" %>
+          <div class="copy-text">
+            Created with <i class="fa fa-heart"></i> by
+            <a href="https://sun-asterisk.vn/">Sun*.inc</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

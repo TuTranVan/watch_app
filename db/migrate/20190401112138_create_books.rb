@@ -8,7 +8,7 @@ class CreateBooks < ActiveRecord::Migration[5.1]
       t.text :content
       t.integer :num_of_pages
       t.integer :year
-      t.integer :quantity
+      t.integer :quantity, default: 0, null: false
       t.integer :price
       t.string :image
       t.timestamps

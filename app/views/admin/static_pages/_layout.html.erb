@@ -1,0 +1,57 @@
+<div class="main">
+  <aside class="col-md-2">
+    <div class="sidebar">
+      <ul class="list-sidebar bg-defoult">
+        <li>
+          <%= link_to admin_root_path do %>
+            <i class="fa fa-home"></i>
+            <span class="nav-label">
+              Trang chủ
+            </span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to admin_root_path do %>  <!-- admin_requests_path -->
+            <i class="fa fa-check-square"></i>
+            <span class="nav-label">Đang chờ xử lý</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to admin_authors_path do %>
+            <i class="fa fa-user-circle"></i>
+            <span class="nav-label">Tác giả</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to admin_publishers_path do %>
+            <i class="fa fa-table"></i>
+            <span class="nav-label">Nhà xuất bản</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to admin_categories_path do %>
+            <i class="fa fa-cube"></i>
+            <span class="nav-label">Loại sách</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to admin_books_path do %>
+            <i class="fa fa-book"></i>
+            <span class="nav-label">Sách</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to admin_users_path do %>
+            <i class="fa fa-user"></i>
+            <span class="nav-label">Người dùng</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to admin_imports_path do %>
+            <i class="fa fa-history"></i>
+            <span class="nav-label">Nhật ký nhập hàng</span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </aside>

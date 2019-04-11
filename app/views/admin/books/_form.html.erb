@@ -1,0 +1,49 @@
+<%= form_for [:admin, @book] do |f| %>
+  <%= render "shared/error_messages", object: @book%>
+
+  <div class="form-group">
+    <%= f.label "Loại sách", class: "control-label" %>
+    <%= f.select(:category_id, select_category, {},{class: "form-control"}) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Tác giả", class: "control-label" %>
+    <%= f.select(:author_id, select_author, {},{class: "form-control"}) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Nhà xuất bản", class: "control-label" %>
+    <%= f.select(:publisher_id, select_publisher, {},{class: "form-control"}) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Năm xuất bản" %>
+    <%= f.select(:year, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {},
+      {class: "form-control"}) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :name, class: "form-control", placeholder: "Tên sách" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.number_field :num_of_pages, class: "form-control", placeholder: "Số trang", min: 1 %>
+  </div>
+
+  <div class="form-group">
+    <%= f.number_field :price, class: "form-control", placeholder: "Giá", min: 1 %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :content, class: "form-control", placeholder: "Nội dung" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Hình ảnh", class: "control-label" %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  </div>
+<% end %>
