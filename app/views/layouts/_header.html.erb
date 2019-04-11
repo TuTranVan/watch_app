@@ -8,27 +8,41 @@
               <%= image_tag("logo.png", width: "60px") %>
             <% end %>
           </li>
-          <li class="nav-item1">
+          <li class="nav-item">
             <%= link_to "TRANG CHỦ",root_path, class: "nav-link cool" %>
           </li>
-          <li class="nav-item1">
+          <li class="nav-item">
             <%= link_to "LOẠI SÁCH",root_path, class: "nav-link cool" %>
           </li>
-          <li class="nav-item1">
-            <%= link_to "SÁCH",root_path, class: "nav-link cool" %>
-          </li>
-          <li class="nav-item1">
+          <li class="nav-item">
             <%= link_to "TÁC GIẢ",root_path, class: "nav-link cool" %>
           </li>
-          <li class="nav-item1">
+          <li class="nav-item">
             <%= link_to "NHÀ XUẤT BẢN",root_path, class: "nav-link cool" %>
           </li>
-          <li class="nav-item1">
-            <%= link_to "ĐĂNG NHẬP", login_path, class: "nav-link cool" %>
-          </li>
-          <li class="nav-item1">
-            <%= link_to "ĐĂNG KÝ", signup_path, class: "nav-link cool" %>
-          </li>
+          <% if logged_in? %>
+            <li class="dropdown nav-item">
+              <a href="#" class="dropdown-toggle nav-link cool" data-toggle="dropdown">
+                <%= current_user.name %><b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <% if current_user.admin? %>
+                  <li><%= link_to "Quản trị hệ thống",admin_root_path %></li>
+                <% else %>
+                  <li><%= link_to "Hồ sơ của bạn", "#" %></li>
+                <% end %>
+                <li><%= link_to "Cập nhật thông tin", "#" %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Đăng xuất", logout_path, method: :delete %></li>
+              </ul>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to login_path, class: "nav-link cool" do %>
+                ĐĂNG NHẬP
+              <% end %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </nav>

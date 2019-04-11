@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190401112808) do
+ActiveRecord::Schema.define(version: 20190403113146) do
 
   create_table "authors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20190401112808) do
     t.text "content"
     t.integer "num_of_pages"
     t.integer "year"
-    t.integer "quantity"
+    t.integer "quantity", default: 0, null: false
     t.integer "price"
     t.string "image"
     t.datetime "created_at", null: false
@@ -50,6 +50,16 @@ ActiveRecord::Schema.define(version: 20190401112808) do
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_comments_on_book_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "imports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "book_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_imports_on_book_id"
+    t.index ["user_id"], name: "index_imports_on_user_id"
   end
 
   create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -114,6 +124,8 @@ ActiveRecord::Schema.define(version: 20190401112808) do
   add_foreign_key "books", "publishers"
   add_foreign_key "comments", "books"
   add_foreign_key "comments", "users"
+  add_foreign_key "imports", "books"
+  add_foreign_key "imports", "users"
   add_foreign_key "likes", "books"
   add_foreign_key "likes", "users"
   add_foreign_key "ratings", "books"

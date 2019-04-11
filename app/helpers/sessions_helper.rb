@@ -11,4 +11,17 @@ module SessionsHelper
   def logged_in?
     current_user.present?
   end
+
+  def current_user? user
+    user == current_user
+  end
+
+  def log_out
+    session.delete :user_id
+    @current_user = nil
+  end
+
+  def select_role
+    User.roles.keys.map {|role| [t("user_role.#{role}"), role]}
+  end
 end

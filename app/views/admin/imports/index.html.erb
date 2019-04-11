@@ -1,0 +1,35 @@
+<% provide :title, "Nhập hàng" %>
+<%= render "admin/static_pages/layout" %>
+  <content class="col-md-10 content">
+    <div class="col-md-12">
+      <div class="panel panel-default panel-table">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col col-xs-6">
+              <h3 class="panel-title"><b>Chi tiết nhập hàng</b></h3>
+            </div>
+            <div class="col col-xs-6">
+              <%= render "filter" %>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped table-bordered table-list">
+            <thead>
+              <tr>
+                <th><em class="fa fa-cog"></em></th>
+                <th>Tên sách</th>
+                <th>Số lượng</th>
+                <th>Ngày nhập</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render @imports %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <%= will_paginate %>
+    </div>
+  </content>
+</div>
