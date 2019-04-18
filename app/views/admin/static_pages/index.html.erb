@@ -3,9 +3,6 @@
 <content class="col-md-10 content">
   <div class="col-md-12">
       <div class="row">
-        <%= image_tag("admin.png") %>
-      </div>
-      <div class="row">
         <div class="col-md-3">
           <div class="panel panel-info">
             <div class="panel-heading">
@@ -20,31 +17,6 @@
               </div>
             </div>
             <%= link_to admin_books_path do %>
-              <div class="panel-footer announcement-bottom">
-                <div class="row">
-                  <div class="col-xs-6">Xem</div>
-                  <div class="col-xs-6 text-right">
-                    <i class="fa fa-arrow-circle-right"></i>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="panel panel-warning">
-            <div class="panel-heading">
-              <div class="row">
-                <div class="col-xs-6">
-                  <i class="fa fa-user-circle fa-5x"></i>
-                </div>
-                <div class="col-xs-6 text-right">
-                  <p class="announcement-heading"><%= Author.count %></p>
-                  <p class="announcement-text">Tác giả</p>
-                </div>
-              </div>
-            </div>
-            <%= link_to admin_authors_path do %>
               <div class="panel-footer announcement-bottom">
                 <div class="row">
                   <div class="col-xs-6">Xem</div>

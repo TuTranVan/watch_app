@@ -50,8 +50,8 @@ class Admin::BooksController < AdminController
   private
 
   def book_params
-    params.require(:book).permit :category_id, :publisher_id, :name,
-      :content, :num_of_pages, :year, :price, :image, :author_id
+    params.require(:book).permit :category_id, :publisher, :author, :name,
+      :content, :num_of_pages, :year, :price, :image
   end
 
   def load_book
