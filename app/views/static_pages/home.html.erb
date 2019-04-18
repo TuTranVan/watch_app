@@ -1,1 +1,9 @@
 <% provide :title, "Trang chủ" %>
+<div class="row">
+  <div class="col-md-2">
+    <p><b>NHÓM SẢN PHẨM</b></p>
+  </div>
+  <div class="col-md-10" id="book">
+    <%= render Book.all %>
+  </div>
+</div>

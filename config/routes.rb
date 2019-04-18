@@ -3,8 +3,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "static_pages#index"
-    resources :authors, except: :show
-    resources :publishers, except: :show
     resources :categories, except: :show
     resources :books
     resources :users, except: :show

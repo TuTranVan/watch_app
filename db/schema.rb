@@ -10,18 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190403113146) do
-
-  create_table "authors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20190418072901) do
 
   create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "category_id"
-    t.bigint "publisher_id"
-    t.bigint "author_id"
+    t.string "publisher"
+    t.string "author"
     t.string "name"
     t.text "content"
     t.integer "num_of_pages"
@@ -31,9 +25,7 @@ ActiveRecord::Schema.define(version: 20190403113146) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_books_on_author_id"
     t.index ["category_id"], name: "index_books_on_category_id"
-    t.index ["publisher_id"], name: "index_books_on_publisher_id"
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -71,14 +63,6 @@ ActiveRecord::Schema.define(version: 20190403113146) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "publishers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
-    t.string "address"
-    t.string "phone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "ratings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.bigint "book_id"
@@ -89,22 +73,26 @@ ActiveRecord::Schema.define(version: 20190403113146) do
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
+  create_table "request_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "book_id"
+    t.bigint "request_id"
+    t.boolean "damage", default: false
+    t.boolean "miss", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_request_details_on_book_id"
+    t.index ["request_id"], name: "index_request_details_on_request_id"
+  end
+
   create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
-    t.bigint "book_id"
-    t.integer "quantity"
     t.date "from_date"
     t.date "to_date"
     t.date "real_date"
-    t.boolean "out_date"
-    t.float "rental", limit: 24
-    t.float "forfeit", limit: 24
-    t.boolean "damage"
-    t.boolean "miss"
+    t.float "forfeit", limit: 24, default: 0.0
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_requests_on_book_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
@@ -119,9 +107,7 @@ ActiveRecord::Schema.define(version: 20190403113146) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "books", "authors"
   add_foreign_key "books", "categories"
-  add_foreign_key "books", "publishers"
   add_foreign_key "comments", "books"
   add_foreign_key "comments", "users"
   add_foreign_key "imports", "books"
@@ -130,6 +116,7 @@ ActiveRecord::Schema.define(version: 20190403113146) do
   add_foreign_key "likes", "users"
   add_foreign_key "ratings", "books"
   add_foreign_key "ratings", "users"
-  add_foreign_key "requests", "books"
+  add_foreign_key "request_details", "books"
+  add_foreign_key "request_details", "requests"
   add_foreign_key "requests", "users"
 end

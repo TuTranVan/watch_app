@@ -7,23 +7,19 @@
   </div>
 
   <div class="form-group">
-    <%= f.label "Tác giả", class: "control-label" %>
-    <%= f.select(:author_id, select_author, {},{class: "form-control"}) %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label "Nhà xuất bản", class: "control-label" %>
-    <%= f.select(:publisher_id, select_publisher, {},{class: "form-control"}) %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label "Năm xuất bản" %>
-    <%= f.select(:year, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {},
-      {class: "form-control"}) %>
-  </div>
-
-  <div class="form-group">
     <%= f.text_field :name, class: "form-control", placeholder: "Tên sách" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :publisher, class: "form-control", placeholder: "Nhà xuất bản" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :author, class: "form-control", placeholder: "Tác giả" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.number_field :year, class: "form-control", placeholder: "Năm xuất bản", min: 1900 %>
   </div>
 
   <div class="form-group">
