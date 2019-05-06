@@ -1,0 +1,37 @@
+.searchbar{
+  margin-bottom: auto;
+  margin-top: 0.5em;
+  height: 40px;
+  background-color: #353b48;
+  border-radius: 30px;
+  }
+
+  .search_input{
+  color: white;
+  border: 0;
+  outline: 0;
+  background: none;
+  width: 400px;
+  caret-color:red;
+  line-height: 40px;
+  padding: 0 10px;
+  }
+  button{
+    border: none;
+    outline:none;
+  }
+  .search_icon{
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 0px solid;
+  color: #e74c3c;
+  background: transparent;
+  }
+  .search_icon:hover{
+  color: white;
+  }

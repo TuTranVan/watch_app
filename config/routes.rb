@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "static_pages#home"
+  root "books#index"
 
   namespace :admin do
     root "static_pages#index"
@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+
+  resources :categories, only: :show
+  resources :books
 end

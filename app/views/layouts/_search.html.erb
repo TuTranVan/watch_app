@@ -1,0 +1,8 @@
+<div class="searchbar">
+  <%= form_for(:search, url: books_path, method: :get) do |f| %>
+    <%= f.search_field :key, class: "search_input", placeholder: "Tìm kiếm..."%>
+    <%= button_tag type: 'submit', class: "search_icon" do %>
+        <i class="fa fa-search"></i>
+    <% end %>
+  <% end %>
+</div>

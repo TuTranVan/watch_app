@@ -1,0 +1,37 @@
+<% provide :title, @book.name %>
+<div class="row">
+  <div class="col-md-2">
+    <p><b>NHÓM SẢN PHẨM</b></p>
+    <%= render Category.all %>
+  </div>
+  <div class="col-md-10">
+    <div class="row show-book">
+      <div class="col-md-4">
+        <%= image_tag @book.image_url.to_s %>
+      </div>
+      <div class="col-md-8">
+        <h3 class="name"><%= @book.name %><sub class="category"><%= @book.category_name %></sub></h3>
+        <p>
+          <% 3.times do  %>
+            <span class="fa fa-star checked"></span>
+          <% end %>
+          <% 2.times do  %>
+            <span class="fa fa-star"></span>
+          <% end %>
+          <span><i>(<%= @book.ratings.count %> lượt đánh giá)</i></span>
+        </p>
+        <p class="content"><%= @book.content %>...</p>
+        <p class="price"><%= number_with_delimiter(@book.price, delimiter: ".") %>đ</p>
+        <p>Tác giả: <span class="author"><%= @book.author %></span></p>
+        <p>Nhà xuất bản: <span class="author"><%= @book.publisher %></span></p>
+        <button class="btn btn-success">
+          <i class="fa fa-shopping-bag"></i>
+          THÊM GIỎ HÀNG
+        </button>
+        <button class="btn btn-default">
+          <i class="fa fa-heart"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

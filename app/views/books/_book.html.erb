@@ -1,13 +1,16 @@
 <div class="col-md-3 col-sm-6">
   <div class="product-grid6">
     <div class="product-image6">
-      <%= link_to do %>
+      <%= link_to book do %>
         <%= image_tag book.image_url.to_s, class: "pic-1" %>
       <% end %>
     </div>
     <div class="product-content">
       <h3 class="title"><a href="#"><%= book.name %></a></h3>
-      <div class="price"><%= book.price %></div>
+      <div class="price">
+        <%= number_with_delimiter(book.price, delimiter: ".") %>
+        <sup style="text-transform: lowercase;">đ</sup>
+      </div>
       <div><%= book.author %></div>
       <div class="rating">
         <div class="stars">

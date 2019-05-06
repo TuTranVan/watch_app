@@ -1,0 +1,37 @@
+.show-book{
+  font-size: 105%;
+  padding: 0 1em;
+  img{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+  .name{
+    padding-top: 1em;
+    font-weight: bold;
+  }
+  .category{
+    font-size: 60%;
+    padding-left: 0.5em;
+    color: blue;
+    font-weight: normal;
+    font-style: italic;
+  }
+  .checked{
+    color: yellow;
+  }
+  .content{
+    font-size: 85%;
+  }
+  .price{
+    color: red;
+    font-weight: bold;
+    font-size: 120%;
+  }
+  .author{
+    color: blue;
+  }
+  button{
+    margin-top: 1em;
+  }
+}

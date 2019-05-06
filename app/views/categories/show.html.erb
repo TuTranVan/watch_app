@@ -1,9 +1,10 @@
-<% provide :title, "Trang chủ" %>
+<% provide :title, @category.name %>
 <div class="row">
   <div class="col-md-2">
     <p><b>NHÓM SẢN PHẨM</b></p>
+    <%= render Category.all %>
   </div>
   <div class="col-md-10" id="book">
-    <%= render Book.all %>
+    <%= render @category.books.newest %>
   </div>
 </div>

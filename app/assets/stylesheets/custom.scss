@@ -63,6 +63,18 @@ label{
  /*--/header --*/
 .bg-faded {
   border-bottom: 1px solid silver;
+  padding-left: 2.5em;
+}
+
+.cart{
+  padding-top: 1em;
+  i{
+    font-size: 115%;
+    color: green;
+  }
+  .badge{
+    background: #e74c3c;
+  }
 }
 
 ul.navbar-nav .nav-item{
