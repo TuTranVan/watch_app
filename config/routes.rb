@@ -18,4 +18,10 @@ Rails.application.routes.draw do
 
   resources :categories, only: :show
   resources :books
+  resources :carts, only: :index do
+    member do
+      get :add_to_cart
+      get :remove_cart
+    end
+  end
 end

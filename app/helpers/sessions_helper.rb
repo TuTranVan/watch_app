@@ -1,4 +1,21 @@
 module SessionsHelper
+  def cart
+    session[:cart] ||= []
+  end
+
+  def empty_cart
+    session.delete :cart
+  end
+
+  def check_in?(book)
+    cart.each do |item|
+      if item['id'] == book.id
+        return false
+      end
+    end
+    return true
+  end
+
   def log_in user
     session[:user_id] = user.id
   end

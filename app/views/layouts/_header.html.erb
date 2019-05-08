@@ -17,9 +17,11 @@
           <li class="nav-item">
             <%= render "layouts/search" %>
           </li>
-          <li class="nav-item nav-link cool cart">
-            <i class="fa fa-shopping-bag"> Giỏ hàng</i>
-            <span class="badge badge-light">0</span>
+          <li class="nav-item cart">
+            <%= link_to carts_path, class: "nav-link cool" do %>
+              <i class="fa fa-shopping-bag"> Giỏ hàng</i>
+              <span class="badge badge-light"><%= cart.count %></span>
+            <% end %>
           </li>
           <% if logged_in? %>
             <li class="dropdown nav-item">
