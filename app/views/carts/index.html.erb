@@ -1,1 +1,67 @@
-<%= cart %>
+<div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <div class="row">
+              <div class="col-md-12">
+                <h5><span class="fa fa-shopping-bag"></span> GIỎ HÀNG CỦA BẠN</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-7"> <!-- show list -->
+              <% cart.each do |book| %>
+                <div class="row cart-list">
+                  <div class="col-md-2">
+                    <%= image_tag book['image']['url'].to_s, class: "cart-pic" %>
+                  </div>
+                  <div class="col-md-7">
+                    <%= link_to book_path(book['id']) do %>
+                      <h4><strong><%= book['name'] %></strong></h4>
+                      <h4><small><%= book['author'] %></small></h4>
+                    <% end %>
+                  </div>
+                  <div class="col-md-3">
+                    <%= link_to remove_cart_cart_path(book['id']) do %>
+                      <button type="button" class="btn btn-link btn-md">
+                        <span class="glyphicon glyphicon-trash"> </span>
+                      </button>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-md-5">
+
+            </div> <!-- checkout -->
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div class="row text-center">
+            <div class="col-md-2">
+              <%= link_to root_path do %>
+                <button type="button" class="btn btn-primary btn-sm btn-block">
+                  <span class="glyphicon glyphicon-share-alt"></span> TIẾP TỤC
+                </button>
+              <% end %>
+            </div>
+            <div class="col-md-2">
+              <%= link_to empty_cart_carts_path do %>
+                <button type="button" class="btn btn-danger btn-sm btn-block">
+                  <i class="fa fa-refresh"></i> LÀM MỚI
+                </button>
+              <% end %>
+            </div>
+            <div class="col-md-2 col-md-offset-6">
+              <%= link_to root_path do %>
+                <button type="button" class="btn btn-warning btn-block">MƯỢN NGAY</button>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

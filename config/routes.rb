@@ -23,5 +23,8 @@ Rails.application.routes.draw do
       get :add_to_cart
       get :remove_cart
     end
+    collection do
+      get :empty_cart
+    end
   end
 end

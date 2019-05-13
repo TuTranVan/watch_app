@@ -24,10 +24,12 @@
         <p class="price"><%= number_with_delimiter(@book.price, delimiter: ".") %>đ</p>
         <p>Tác giả: <span class="author"><%= @book.author %></span></p>
         <p>Nhà xuất bản: <span class="author"><%= @book.publisher %></span></p>
-        <button class="btn btn-success">
-          <i class="fa fa-shopping-bag"></i>
-          THÊM GIỎ HÀNG
-        </button>
+        <%= link_to add_to_cart_cart_path(@book) do %>
+          <button class="btn btn-success">
+            <i class="fa fa-shopping-bag"></i>
+            THÊM GIỎ HÀNG
+          </button>
+        <% end %>
         <button class="btn btn-default">
           <i class="fa fa-heart"></i>
         </button>

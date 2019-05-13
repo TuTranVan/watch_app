@@ -3,10 +3,6 @@ module SessionsHelper
     session[:cart] ||= []
   end
 
-  def empty_cart
-    session.delete :cart
-  end
-
   def check_in?(book)
     cart.each do |item|
       if item['id'] == book.id
