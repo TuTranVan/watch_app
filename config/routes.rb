@@ -34,4 +34,5 @@ Rails.application.routes.draw do
   end
   resources :requests, only: [:create, :show]
   resources :users
+  resources :comments, only: %i(create destroy)
 end

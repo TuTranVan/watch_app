@@ -37,4 +37,8 @@ module SessionsHelper
   def select_role
     User.roles.keys.map {|role| [t("user_role.#{role}"), role]}
   end
+
+  def comment_of_user? comment
+    current_user.comments.find_by(id: comment.id).present?
+  end
 end
