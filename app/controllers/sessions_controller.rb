@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       if user.admin?
         redirect_to admin_root_path
       else
-        redirect_to root_path
+        redirect_to current_user
       end
     else
       flash.now[:danger] = "Đăng nhập thất bại!!"

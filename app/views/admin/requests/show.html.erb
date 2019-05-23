@@ -1,0 +1,27 @@
+<% provide :title, @request.user.name %>
+<%= render "admin/static_pages/layout" %>
+  <content class="col-md-10 content">
+    <div class="col-md-12">
+      <table class="table table-striped table-bordered table-list">
+        <thead>
+          <tr>
+            <th>Hình ảnh</th>
+            <th>Tên sách</th>
+            <th>Có hư hỏng</th>
+            <th>Có mất sách</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @request.request_details.each do |detail| %>
+            <tr>
+              <td><%= image_tag detail.book.image.to_s, class: "admin-image" %></td>
+              <td><%= detail.book.name %></td>
+              <td><%= detail.damage %></td>
+              <td><%= detail.miss %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </content>
+</div>

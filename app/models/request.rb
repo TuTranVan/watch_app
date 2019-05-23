@@ -4,5 +4,5 @@ class Request < ApplicationRecord
 
   validates :from_date, presence: true
 
-  enum status: {not_approved: 0, approved: 1, reject: 2}
+  enum status: {start: 0, processing: 1, finish: 2}
 end

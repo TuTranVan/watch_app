@@ -1,0 +1,45 @@
+<% provide :title, current_user.name %>
+<div class="container margin-top">
+  <div class="row">
+    <%= render "shared/flash" %>
+    <h3><b><%= current_user.name %></b></h3><hr>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <i class="glyphicon glyphicon-map-marker"></i>
+        <span class="nav-label"><%= current_user.address %></span>
+      </div>
+      <div class="form-group">
+        <i class="glyphicon glyphicon-envelope"></i>
+        <span class="nav-label"><%= current_user.email %></span>
+      </div>
+      <div class="form-group">
+        <i class="glyphicon glyphicon-phone"></i>
+        <span class="nav-label"><%= current_user.phone %></span>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <table class="table table-striped table-bordered table-list">
+        <thead>
+          <tr>
+            <th>Hình ảnh</th>
+            <th>Tên sách</th>
+            <th>Có hư hỏng</th>
+            <th>Có mất sách</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @request.request_details.each do |detail| %>
+            <tr>
+              <td><%= image_tag detail.book.image.to_s, class: "admin-image" %></td>
+              <td><%= detail.book.name %></td>
+              <td><%= detail.damage? ? "Có": "Không" %></td>
+              <td><%= detail.miss? ? "Có": "Không" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>

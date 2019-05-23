@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :load_user, only: %i(show edit update)
-  before_action :correct_user, only: %i(show edit update)
   before_action :logged_in_user, only: %i(show edit update)
+  before_action :correct_user, only: %i(show edit update)
 
   def new
     @user = User.new
@@ -19,10 +19,17 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    current_user.destroy
-    log_out
-    redirect_to root_path
+  def show; end
+
+  def edit; end
+
+  def update
+    if @user.update_attributes user_params
+      flash[:success] = "Cập nhật thành công!"
+      redirect_to current_user
+    else
+      render :edit
+    end
   end
 
   private

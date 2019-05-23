@@ -2,4 +2,12 @@ en:
   user_role:
     admin: "Quản trị viên"
     user: "Người dùng"
+  status_request:
+    start: "Nhận sách"
+    processing: "Trả sách"
+    finish: "Hoàn tất"
+  status_request_profile:
+    start: "Chưa nhận"
+    processing: "Đang mượn"
+    finish: "Hoàn tất"
 

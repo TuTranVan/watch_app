@@ -7,6 +7,11 @@ Rails.application.routes.draw do
     resources :books
     resources :users, except: :show
     resources :imports, only: [:create, :index, :destroy]
+    resources :requests, except: [:new, :create, :edit] do
+      member do
+        get :confirm
+      end
+    end
   end
 
   get "/signup", to: "users#new"
@@ -27,4 +32,6 @@ Rails.application.routes.draw do
       get :empty_cart
     end
   end
+  resources :requests, only: [:create, :show]
+  resources :users
 end

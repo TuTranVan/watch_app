@@ -1,0 +1,10 @@
+<% provide :title, current_user.name %>
+<% provide :button_text, "Cập nhật" %>
+<% provide :url, user_path %>
+<div class="container margin-top">
+  <div class="col-md-6 col-md-offset-3 login-sec">
+    <h2 class="text-center">Cập nhật thông tin</h2>
+    <br>
+    <%= render "form" %>
+  </div>
+</div>

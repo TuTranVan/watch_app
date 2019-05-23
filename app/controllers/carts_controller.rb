@@ -15,8 +15,8 @@ class CartsController < ApplicationController
   end
 
   def empty_cart
-    session.delete :cart
-    redirect_to root_path
+    cart.clear
+    redirect_to carts_path
   end
 
   private

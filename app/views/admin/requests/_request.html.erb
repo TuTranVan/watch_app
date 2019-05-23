@@ -1,0 +1,33 @@
+<tr>
+  <td align="center">
+    <%= link_to admin_request_path(request), class: "btn btn-default" do %>
+      <em class="fa fa-eye"></em>
+    <% end %>
+  </td>
+  <td><%= request.user.name %></td>
+  <td><%= request.from_date %></td>
+  <td><%= request.to_date %></td>
+  <td><%= request.real_date %></td>
+  <td><%= request.forfeit.to_i %></td>
+  <td>
+    <% if request.start? %>
+      <%= link_to confirm_admin_request_path(request), class: "btn btn-primary" do %>
+        <%= t "status_request.#{request.status}" %>
+      <% end %>
+      <%= link_to admin_request_path(request), method: :delete,
+        class: "btn btn-danger", data: {confirm: "Xác nhận hủy?"} do %>
+        <em class="fa fa-trash"></em>
+      <% end %>
+    <% end %>
+    <% if request.processing? %>
+      <%= link_to "#", class: "btn btn-success" do %>
+        <%= t "status_request.#{request.status}" %>
+      <% end %>
+    <% end %>
+    <% if request.finish? %>
+      <%= link_to "#", class: "btn btn-warning" do %>
+        <%= t "status_request.#{request.status}" %>
+      <% end %>
+    <% end %>
+  </td>
+</tr>
