@@ -38,6 +38,10 @@ module SessionsHelper
     User.roles.keys.map {|role| [t("user_role.#{role}"), role]}
   end
 
+  def select_request
+    Request.statuses.keys.map {|status| [t("status_request_profile.#{status}"), status]}
+  end
+
   def comment_of_user? comment
     current_user.comments.find_by(id: comment.id).present?
   end

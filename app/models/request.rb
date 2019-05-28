@@ -5,4 +5,7 @@ class Request < ApplicationRecord
   validates :from_date, presence: true
 
   enum status: {start: 0, processing: 1, finish: 2}
+
+  scope :order_status, ->{order status: :asc}
+  scope :by_status, ->status{where(status: status)}
 end

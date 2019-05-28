@@ -5,21 +5,21 @@ class Admin::RequestDetailsController < AdminController
     @request_detail.damage = false
     @request_detail.miss = false
     @request_detail.save
-    redirect_to admin_request_path(@request_detail.request)
+    redirect_to admin_requests_path
   end
 
   def damage
     @request_detail.damage = true
     @request_detail.miss = false
     @request_detail.save
-    redirect_to admin_request_path(@request_detail.request)
+    redirect_to admin_requests_path
   end
 
   def miss
     @request_detail.damage = false
     @request_detail.miss = true
     @request_detail.save
-    redirect_to admin_request_path(@request_detail.request)
+    redirect_to admin_requests_path
   end
 
   private
