@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def logged_in_user
     return if logged_in?
-    flash[:danger] = "Please login"
+    flash[:danger] = "Vui lòng đăng nhập!"
     redirect_to login_path
   end
 end

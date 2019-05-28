@@ -4,7 +4,11 @@ class CartsController < ApplicationController
 
   def add_to_cart
     if check_in?(@book)
-      cart << @book
+      if @book.quantity == 0
+        flash[:danger] = "Sách hiện đang hết!"
+      else
+        cart << @book
+      end
     end
     redirect_to carts_path
   end

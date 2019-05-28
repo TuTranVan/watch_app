@@ -10,6 +10,14 @@ Rails.application.routes.draw do
     resources :requests, except: [:new, :create, :edit] do
       member do
         get :confirm
+        get :finish
+      end
+    end
+    resources :request_details, only: [:index] do
+      member do
+        get :normal
+        get :damage
+        get :miss
       end
     end
   end
@@ -35,4 +43,5 @@ Rails.application.routes.draw do
   resources :requests, only: [:create, :show]
   resources :users
   resources :comments, only: %i(create destroy)
+  resources :likes, only: %i(create destroy)
 end

@@ -26,8 +26,7 @@
           <tr>
             <th>Hình ảnh</th>
             <th>Tên sách</th>
-            <th>Có hư hỏng</th>
-            <th>Có mất sách</th>
+            <th>Tình trạng</th>
           </tr>
         </thead>
         <tbody>
@@ -35,8 +34,11 @@
             <tr>
               <td><%= image_tag detail.book.image.to_s, class: "admin-image" %></td>
               <td><%= detail.book.name %></td>
-              <td><%= detail.damage? ? "Có": "Không" %></td>
-              <td><%= detail.miss? ? "Có": "Không" %></td>
+              <td>
+                <%= "Hư hỏng" if detail.damage? %>
+                <%= "Mất sách" if detail.miss? %>
+                <%= "Bình thường" if !detail.damage? && !detail.miss? %>
+              </td>
             </tr>
           <% end %>
         </tbody>

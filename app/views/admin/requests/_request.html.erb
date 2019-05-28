@@ -20,7 +20,7 @@
       <% end %>
     <% end %>
     <% if request.processing? %>
-      <%= link_to "#", class: "btn btn-success" do %>
+      <%= link_to finish_admin_request_path(request), class: "btn btn-success" do %>
         <%= t "status_request.#{request.status}" %>
       <% end %>
     <% end %>

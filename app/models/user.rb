@@ -2,7 +2,6 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :requests, dependent: :destroy
-  has_many :ratings, dependent: :destroy
   has_many :imports, dependent: :destroy
 
   validates :name, presence: true, length: {maximum: 80}

@@ -7,19 +7,11 @@
           <tr>
             <th>Hình ảnh</th>
             <th>Tên sách</th>
-            <th>Có hư hỏng</th>
-            <th>Có mất sách</th>
+            <th class="text-center">Tình trạng</th>
           </tr>
         </thead>
         <tbody>
-          <% @request.request_details.each do |detail| %>
-            <tr>
-              <td><%= image_tag detail.book.image.to_s, class: "admin-image" %></td>
-              <td><%= detail.book.name %></td>
-              <td><%= detail.damage %></td>
-              <td><%= detail.miss %></td>
-            </tr>
-          <% end %>
+          <%= render @request.request_details %>
         </tbody>
       </table>
     </div>

@@ -1,5 +1,5 @@
-class Admin::RequestsController < ApplicationController
-  before_action :load_request, only: %i(show destroy confirm)
+class Admin::RequestsController < AdminController
+  before_action :load_request, only: %i(show destroy confirm finish)
 
   def index
     @requests = Request.paginate page: params[:page], per_page: 5
@@ -23,6 +23,11 @@ class Admin::RequestsController < ApplicationController
 
   def confirm
     @request.processing!
+    redirect_to admin_requests_path
+  end
+
+  def finish
+    # @request.real_date = Date.now
     redirect_to admin_requests_path
   end
 

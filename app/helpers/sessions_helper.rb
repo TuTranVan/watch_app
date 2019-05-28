@@ -41,4 +41,8 @@ module SessionsHelper
   def comment_of_user? comment
     current_user.comments.find_by(id: comment.id).present?
   end
+
+  def like? book
+    current_user.likes.find_by(book_id: book.id).present?
+  end
 end

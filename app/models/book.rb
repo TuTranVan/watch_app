@@ -3,7 +3,6 @@ class Book < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   has_many :likes, dependent: :destroy
-  has_many :ratings, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :request_details, dependent: :destroy
   has_many :imports, dependent: :destroy
