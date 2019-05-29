@@ -63,16 +63,6 @@ ActiveRecord::Schema.define(version: 20190418072901) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "ratings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
-    t.bigint "book_id"
-    t.integer "number_rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_ratings_on_book_id"
-    t.index ["user_id"], name: "index_ratings_on_user_id"
-  end
-
   create_table "request_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "book_id"
     t.bigint "request_id"
@@ -114,8 +104,6 @@ ActiveRecord::Schema.define(version: 20190418072901) do
   add_foreign_key "imports", "users"
   add_foreign_key "likes", "books"
   add_foreign_key "likes", "users"
-  add_foreign_key "ratings", "books"
-  add_foreign_key "ratings", "users"
   add_foreign_key "request_details", "books"
   add_foreign_key "request_details", "requests"
   add_foreign_key "requests", "users"
