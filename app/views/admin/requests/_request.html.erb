@@ -4,6 +4,7 @@
       <em class="fa fa-eye"></em>
     <% end %>
   </td>
+  <td><%= request.id %></td>
   <td><%= request.user.name %></td>
   <td><%= request.from_date %></td>
   <td><%= request.to_date %></td>
@@ -11,23 +12,13 @@
   <td><%= request.forfeit.to_i %></td>
   <td>
     <% if request.start? %>
-      <%= link_to confirm_admin_request_path(request), class: "btn btn-primary" do %>
-        <%= t "status_request.#{request.status}" %>
-      <% end %>
-      <%= link_to admin_request_path(request), method: :delete,
-        class: "btn btn-danger", data: {confirm: "Xác nhận hủy?"} do %>
-        <em class="fa fa-trash"></em>
-      <% end %>
+      <button class="btn btn-primary"><%= t "status_request_profile.#{request.status}" %></button>
     <% end %>
     <% if request.processing? %>
-      <%= link_to finish_admin_request_path(request), class: "btn btn-success" do %>
-        <%= t "status_request.#{request.status}" %>
-      <% end %>
+      <button class="btn btn-success"><%= t "status_request_profile.#{request.status}" %></button>
     <% end %>
     <% if request.finish? %>
-      <%= link_to "#", class: "btn btn-warning" do %>
-        <%= t "status_request.#{request.status}" %>
-      <% end %>
+      <button class="btn btn-warning"><%= t "status_request_profile.#{request.status}" %></button>
     <% end %>
   </td>
 </tr>

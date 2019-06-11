@@ -2,6 +2,7 @@
 <div class="row">
   <div class="col-md-2">
     <p><b>NHÓM SẢN PHẨM</b></p>
+    <p><%= link_to "Xem tất cả", root_path %>(<%= Book.all.count %>)</p>
     <%= render Category.all %>
   </div>
   <div class="col-md-10" id="book">

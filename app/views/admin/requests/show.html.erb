@@ -1,7 +1,37 @@
 <% provide :title, @request.user.name %>
 <%= render "admin/static_pages/layout" %>
   <content class="col-md-10 content">
-    <div class="col-md-12">
+    <div class="col-md-4">
+      <ul>
+        <p><b>Người mượn:</b> <%= @request.user.name %></p><hr>
+        <p><b>Địa chỉ:</b> <%= @request.user.address %></p><hr>
+        <p><b>ID yêu cầu:</b> <%= @request.id %></p><hr>
+        <p><b>Ngày mượn:</b> <%= @request.from_date %></p><hr>
+        <p><b>Ngày hẹn trả:</b> <%= @request.to_date %></p><hr>
+      </ul>
+      <div>
+        <% if @request.start? %>
+          <%= link_to confirm_admin_request_path(@request), class: "btn btn-primary" do %>
+            <%= t "status_request.#{@request.status}" %>
+          <% end %>
+          <%= link_to admin_request_path(@request), method: :delete,
+            class: "btn btn-danger", data: {confirm: "Xác nhận hủy?"} do %>
+            <em class="fa fa-trash"></em>
+          <% end %>
+        <% end %>
+        <% if @request.processing? %>
+          <%= link_to finish_admin_request_path(@request), class: "btn btn-success" do %>
+            <%= t "status_request.#{@request.status}" %>
+          <% end %>
+        <% end %>
+        <% if @request.finish? %>
+          <%= link_to "#", class: "btn btn-warning" do %>
+            <%= t "status_request.#{@request.status}" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-8">
       <table class="table table-striped table-bordered table-list">
         <thead>
           <tr>
