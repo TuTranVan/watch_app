@@ -12,99 +12,88 @@
 
 ActiveRecord::Schema.define(version: 20190418072901) do
 
-  create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "category_id"
-    t.string "publisher"
-    t.string "author"
-    t.string "name"
-    t.text "content"
-    t.integer "num_of_pages"
-    t.integer "year"
-    t.integer "quantity", default: 0, null: false
-    t.integer "price"
-    t.string "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_books_on_category_id"
-  end
-
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "binhluans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
-    t.bigint "book_id"
-    t.text "content"
+    t.bigint "sanpham_id"
+    t.text "noidung"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_comments_on_book_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.index ["sanpham_id"], name: "index_binhluans_on_sanpham_id"
+    t.index ["user_id"], name: "index_binhluans_on_user_id"
   end
 
-  create_table "imports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "chitietdhs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "donhang_id"
+    t.bigint "sanpham_id"
+    t.integer "soluong", default: 0
+    t.integer "dongia", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["donhang_id"], name: "index_chitietdhs_on_donhang_id"
+    t.index ["sanpham_id"], name: "index_chitietdhs_on_sanpham_id"
+  end
+
+  create_table "donhangs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
-    t.bigint "book_id"
-    t.integer "quantity"
+    t.date "ngaydat"
+    t.string "hoten"
+    t.string "diachi"
+    t.string "sdt"
+    t.date "tongtien"
+    t.integer "trangthai", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_imports_on_book_id"
-    t.index ["user_id"], name: "index_imports_on_user_id"
+    t.index ["user_id"], name: "index_donhangs_on_user_id"
   end
 
-  create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "loaisps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "ten"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "nhaphangs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
-    t.bigint "book_id"
+    t.bigint "sanpham_id"
+    t.integer "soluong"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_likes_on_book_id"
-    t.index ["user_id"], name: "index_likes_on_user_id"
+    t.index ["sanpham_id"], name: "index_nhaphangs_on_sanpham_id"
+    t.index ["user_id"], name: "index_nhaphangs_on_user_id"
   end
 
-  create_table "request_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "book_id"
-    t.bigint "request_id"
-    t.boolean "damage", default: false
-    t.boolean "miss", default: false
+  create_table "sanphams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "loaisp_id"
+    t.string "ten"
+    t.string "mausac"
+    t.string "thuonghieu"
+    t.string "xuatsu"
+    t.string "baohanh"
+    t.integer "soluong", default: 0, null: false
+    t.integer "dongia"
+    t.string "hinhanh"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_request_details_on_book_id"
-    t.index ["request_id"], name: "index_request_details_on_request_id"
-  end
-
-  create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
-    t.date "from_date"
-    t.date "to_date"
-    t.date "real_date"
-    t.float "forfeit", limit: 24, default: 0.0
-    t.integer "status", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_requests_on_user_id"
+    t.index ["loaisp_id"], name: "index_sanphams_on_loaisp_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
+    t.string "ten"
     t.string "email"
     t.string "password_digest"
-    t.string "address"
-    t.string "phone"
+    t.string "diachi"
+    t.string "sdt"
     t.integer "role", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "books", "categories"
-  add_foreign_key "comments", "books"
-  add_foreign_key "comments", "users"
-  add_foreign_key "imports", "books"
-  add_foreign_key "imports", "users"
-  add_foreign_key "likes", "books"
-  add_foreign_key "likes", "users"
-  add_foreign_key "request_details", "books"
-  add_foreign_key "request_details", "requests"
-  add_foreign_key "requests", "users"
+  add_foreign_key "binhluans", "sanphams"
+  add_foreign_key "binhluans", "users"
+  add_foreign_key "chitietdhs", "donhangs"
+  add_foreign_key "chitietdhs", "sanphams"
+  add_foreign_key "donhangs", "users"
+  add_foreign_key "nhaphangs", "sanphams"
+  add_foreign_key "nhaphangs", "users"
+  add_foreign_key "sanphams", "loaisps"
 end
