@@ -16,19 +16,19 @@
               <p class="text-center">Bạn chưa có lựa chọn nào.</p>
             <% end %>
             <div class="col-md-8"> <!-- show list -->
-              <% cart.each do |book| %>
+              <% cart_shop.each do |sanpham| %>
                 <div class="row cart-list">
                   <div class="col-md-2">
-                    <%= image_tag book['image']['url'].to_s, class: "cart-pic" %>
+                    <%= image_tag sanpham.hinhanh_url.to_s, class: "cart-pic" %>
                   </div>
                   <div class="col-md-7">
-                    <%= link_to book_path(book['id']) do %>
-                      <h4><strong><%= book['name'] %></strong></h4>
-                      <h4><small><%= book['author'] %></small></h4>
+                    <%= link_to sanpham_path(sanpham) do %>
+                      <h4><strong><%= sanpham.ten %></strong></h4>
+                      <h4><small><%= sanpham.thuonghieu %></small></h4>
                     <% end %>
                   </div>
                   <div class="col-md-3">
-                    <%= link_to remove_cart_cart_path(book['id']) do %>
+                    <%= link_to remove_cart_cart_path(sanpham) do %>
                       <button type="button" class="btn btn-link btn-md">
                         <span class="glyphicon glyphicon-trash"> </span>
                       </button>

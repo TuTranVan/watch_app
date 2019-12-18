@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "books#index"
+  root "sanphams#index"
 
   namespace :admin do
     root "static_pages#index"
@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :sanphams
     resources :users, except: :show
     resources :nhaphangs, only: [:create, :index, :destroy]
-    resources :requests, except: [:new, :create, :edit] do
+    resources :donhangs, except: [:new, :create, :edit] do
       member do
         get :confirm
         get :finish
@@ -29,8 +29,8 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
-  resources :categories, only: :show
-  resources :books
+  resources :loaisps, only: :show
+  resources :sanphams
   resources :carts, only: :index do
     member do
       get :add_to_cart
@@ -40,8 +40,7 @@ Rails.application.routes.draw do
       get :empty_cart
     end
   end
-  resources :requests, only: [:create, :show]
+  resources :donhangs, only: [:create, :show]
   resources :users
-  resources :comments, only: %i(create destroy)
-  resources :likes, only: %i(create destroy)
+  resources :binhluans, only: %i(create destroy)
 end

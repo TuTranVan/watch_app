@@ -1,20 +1,20 @@
 class CartsController < ApplicationController
-  before_action :load_book, only: [:add_to_cart, :remove_cart]
+  before_action :load_sanpham, only: [:add_to_cart, :remove_cart]
   def index; end
 
   def add_to_cart
-    if check_in?(@book)
-      if @book.quantity == 0
-        flash[:danger] = "Sách hiện đang hết!"
+    if check_in?(@sanpham)
+      if @sanpham.soluong == 0
+        flash[:danger] = "Sản phẩm hiện đang hết!"
       else
-        cart << @book
+        cart << @sanpham.id
       end
     end
     redirect_to carts_path
   end
 
   def remove_cart
-    cart.delete_if { |x| x['id'] == @book.id }
+    cart.delete_if { |x| x == @sanpham.id }
     redirect_to carts_path
   end
 
@@ -25,9 +25,9 @@ class CartsController < ApplicationController
 
   private
 
-  def load_book
-    @book = Book.find_by id: params[:id]
-    return if @book
+  def load_sanpham
+    @sanpham = Sanpham.find_by id: params[:id]
+    return if @sanpham
     redirect_to root_path
   end
 end

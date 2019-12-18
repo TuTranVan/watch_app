@@ -1,4 +1,4 @@
-class RequestsController < ApplicationController
+class DonhangsController < ApplicationController
   before_action :load_request, only: %i(show)
 
   def create

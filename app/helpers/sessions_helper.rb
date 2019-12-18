@@ -3,9 +3,13 @@ module SessionsHelper
     session[:cart] ||= []
   end
 
+  def cart_shop
+    Sanpham.find cart
+  end
+
   def check_in?(book)
     cart.each do |item|
-      if item['id'] == book.id
+      if item == book.id
         return false
       end
     end
@@ -42,8 +46,8 @@ module SessionsHelper
     Request.statuses.keys.map {|status| [t("status_request_profile.#{status}"), status]}
   end
 
-  def comment_of_user? comment
-    current_user.comments.find_by(id: comment.id).present?
+  def comment_of_user? binhluan
+    current_user.binhluans.find_by(id: binhluan.id).present?
   end
 
   def like? book

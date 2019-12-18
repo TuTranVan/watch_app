@@ -1,0 +1,41 @@
+<% provide :title, @sanpham.ten %>
+<div class="row">
+  <div class="col-md-2">
+    <p><b>NHÓM SẢN PHẨM</b></p>
+    <p><%= link_to "Xem tất cả", root_path %>(<%= Sanpham.all.count %>)</p>
+    <%= render Loaisp.all %>
+  </div>
+  <div class="col-md-10">
+    <div class="row show-book">
+      <div class="col-md-4">
+        <%= image_tag @sanpham.hinhanh_url.to_s %>
+      </div>
+      <div class="col-md-8">
+        <h3 class="name"><%= @sanpham.ten %><sub class="category"><%= @sanpham.loaisp_ten %></sub></h3>
+        <p>
+          <% 5.times do  %>
+            <span class="fa fa-star checked"></span>
+          <% end %>
+          <span><i>(100 lượt đánh giá)</i></span>
+        </p>
+        <p class="price"><%= number_with_delimiter(@sanpham.dongia, delimiter: ".") %>đ</p>
+        <p>Thương hiệu: <span class="author"><%= @sanpham.thuonghieu %></span></p>
+        <p>Xuất sứ: <span class="author"><%= @sanpham.xuatsu %></span></p>
+        <p>Màu sắc: <span class="author"><%= @sanpham.mausac %></span></p>
+        <p>Bảo hành: <span class="author"><%= @sanpham.baohanh %></span></p>
+        <%= link_to add_to_cart_cart_path(@sanpham) do %>
+          <button class="btn btn-success">
+            <i class="fa fa-shopping-bag"></i>
+            THÊM GIỎ HÀNG
+          </button>
+        <% end %>
+      </div>
+    </div>
+    <hr>
+    <div class="row show-book">
+        <h4 style="padding-left: 1em; font-weight: bold;">Bình luận</h4><br>
+        <div class="col-md-7"><%= render "binhluans/form" %></div>
+        <div class="col-md-7"><%= render @sanpham.binhluans %></div>
+      </div>
+  </div>
+</div>

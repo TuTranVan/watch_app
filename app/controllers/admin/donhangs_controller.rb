@@ -1,4 +1,4 @@
-class Admin::RequestsController < AdminController
+class Admin::DonhangsController < AdminController
   before_action :load_request, only: %i(show destroy confirm finish)
 
   def index

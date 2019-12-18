@@ -1,5 +1,5 @@
-class BooksController < ApplicationController
-  before_action :load_book, only: :show
+class SanphamsController < ApplicationController
+  before_action :load_sanpham, only: :show
 
   def index
     @sanphams = Sanpham.newest
@@ -12,9 +12,9 @@ class BooksController < ApplicationController
 
   private
 
-  def load_book
-    @book = Book.find_by id: params[:id]
-    return if @book
+  def load_sanpham
+    @sanpham = Sanpham.find_by id: params[:id]
+    return if @sanpham
     redirect_to root_path
   end
 end

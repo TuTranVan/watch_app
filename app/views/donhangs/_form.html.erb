@@ -1,6 +1,6 @@
-<%= form_for current_user.requests.build do |f| %>
+<%= form_for current_user.donhangs.build do |f| %>
   <div class="form-group">
-    <%= f.date_field :from_date, class: "form-control", value: Date.current, min: Date.current %>
+    <%= f.date_field :ngaydat, class: "form-control", value: Date.current %>
   </div>
   <div class="form-group">
     <%= f.submit "MƯỢN NGAY", class: "btn btn-warning btn-block" %>
