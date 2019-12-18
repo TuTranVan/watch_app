@@ -3,10 +3,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "static_pages#index"
-    resources :categories, except: :show
-    resources :books
+    resources :loaisps, except: :show
+    resources :sanphams
     resources :users, except: :show
-    resources :imports, only: [:create, :index, :destroy]
+    resources :nhaphangs, only: [:create, :index, :destroy]
     resources :requests, except: [:new, :create, :edit] do
       member do
         get :confirm

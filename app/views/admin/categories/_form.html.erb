@@ -1,8 +1,0 @@
-<%= form_for [:admin, @category] do |f| %>
-  <%= render "shared/error_messages", object: @category%>
-
-  <div class="form-group">
-    <%= f.text_field :name, class: "form-control", placeholder: "Tên loại sách" %>
-  </div>
-  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
-<% end %>

@@ -1,4 +1,4 @@
-<% provide :title, "Sách" %>
+<% provide :title, "Nhập hàng" %>
 <%= render "admin/static_pages/layout" %>
   <content class="col-md-10 content">
     <div class="col-md-12">
@@ -6,14 +6,7 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col col-xs-6">
-              <%= render "filter" %>
-            </div>
-            <div class="col col-xs-6 text-right">
-                <%= link_to new_admin_book_path do %>
-                  <button type="button" class="btn btn-sm btn-primary btn-create">
-                    Thêm
-                  </button>
-                <% end %>
+              <h3 class="panel-title"><b>Chi tiết nhập hàng</b></h3>
             </div>
           </div>
         </div>
@@ -22,15 +15,13 @@
             <thead>
               <tr>
                 <th><em class="fa fa-cog"></em></th>
-                <th>Tên sách</th>
-                <th>Loại sách</th>
-                <th>Tác giả</th>
-                <th>Nhà xuất bản</th>
-                <th>Năm xuất bản</th>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Ngày nhập</th>
               </tr>
             </thead>
             <tbody>
-              <%= render @books %>
+              <%= render @nhaphangs %>
             </tbody>
           </table>
         </div>

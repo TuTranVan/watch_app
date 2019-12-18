@@ -1,0 +1,17 @@
+<tr>
+  <td align="center">
+    <%= link_to admin_sanpham_path(sanpham), class: "btn btn-default" do %>
+      <em class="fa fa-eye"></em>
+    <% end %>
+    <%= link_to admin_sanpham_path(sanpham), method: :delete, class: "btn btn-danger",
+      data: {confirm: "Xác nhận xóa?"} do %>
+      <em class="fa fa-trash"></em>
+    <% end %>
+  </td>
+  <td><%= sanpham.ten %></td>
+  <td><%= sanpham.loaisp_ten %></td>
+  <td><%= sanpham.thuonghieu %></td>
+  <td><%= sanpham.xuatsu %></td>
+  <td><%= sanpham.soluong %></td>
+  <td><%= sanpham.dongia %></td>
+</tr>

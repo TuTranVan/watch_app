@@ -1,0 +1,12 @@
+<tr>
+  <td align="center">
+    <%= link_to edit_admin_loaisp_path(loaisp), class: "btn btn-default" do %>
+      <em class="fa fa-pencil"></em>
+    <% end %>
+    <%= link_to admin_loaisp_path(loaisp), method: :delete,class: "btn btn-danger",
+      data: {confirm: "Xác nhận xóa?"} do %>
+        <em class="fa fa-trash"></em>
+    <% end %>
+  </td>
+  <td><%= loaisp.ten %></td>
+</tr>

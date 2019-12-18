@@ -1,8 +1,8 @@
-<% provide :title, "Sách" %>
+<% provide :title, "Sản phẩm" %>
 <%= render "admin/static_pages/layout" %>
   <content class="col-md-10 content">
     <div class="col-md-5">
-      <%= image_tag @book.image_url.to_s, class: "img-book" %>
+      <%= image_tag @sanpham.hinhanh_url.to_s, class: "img-book" %>
     </div>
     <div class="col-md-7">
       <table class="table table-striped table-bordered table-list">
@@ -10,7 +10,7 @@
           <tr>
             <th><em class="fa fa-cog"></em></th>
             <th>
-              <%= link_to edit_admin_book_path(@book), class: "btn btn-default" do %>
+              <%= link_to edit_admin_sanpham_path(@sanpham), class: "btn btn-default" do %>
                 <em class="fa fa-pencil"></em>
               <% end %>
               <!-- Button trigger modal -->
@@ -22,13 +22,13 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalCenterTitle"><b><%= @book.name %></b></h5>
+                      <h5 class="modal-title" id="exampleModalCenterTitle"><b><%= @sanpham.ten %></b></h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
                     <div class="modal-body">
-                      <%= render "admin/imports/form" %>
+                      <%= render "admin/nhaphangs/form" %>
                     </div>
                   </div>
                 </div>
@@ -38,36 +38,36 @@
         </thead>
         <tbody>
           <tr>
-            <td>Tên sách</td>
-            <td><%= @book.name %></td>
+            <td>Tên sản phẩm</td>
+            <td><%= @sanpham.ten %></td>
           </tr>
           <tr>
-            <td>Loại sách</td>
-            <td><%= @book.category_name %></td>
+            <td>Loại</td>
+            <td><%= @sanpham.loaisp_ten %></td>
           </tr>
           <tr>
-            <td>Tác giả</td>
-            <td><%= @book.author %></td>
+            <td>Thương hiệu</td>
+            <td><%= @sanpham.thuonghieu %></td>
           </tr>
           <tr>
-            <td>Nhà xuất bản</td>
-            <td><%= @book.publisher %></td>
+            <td>Xuất sứ</td>
+            <td><%= @sanpham.xuatsu %></td>
           </tr>
           <tr>
-            <td>Số trang </td>
-            <td><%= @book.num_of_pages %></td>
+            <td>Màu sắc</td>
+            <td><%= @sanpham.mausac %></td>
           </tr>
           <tr>
-            <td>Năm xuất bản</td>
-            <td><%= @book.year %></td>
+            <td>Bảo hành</td>
+            <td><%= @sanpham.baohanh %></td>
           </tr>
           <tr>
             <td>Số lượng</td>
-            <td><%= @book.quantity %></td>
+            <td><%= @sanpham.soluong %></td>
           </tr>
           <tr>
-            <td>Giá</td>
-            <td><%= @book.price %></td>
+            <td>Đơn giá</td>
+            <td><%= @sanpham.dongia %></td>
           </tr>
         </tbody>
       </table>

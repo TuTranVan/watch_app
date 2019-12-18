@@ -1,0 +1,11 @@
+<tr>
+  <td align="center">
+    <%= link_to admin_nhaphang_path(nhaphang), method: :delete, class: "btn btn-danger",
+      data: {confirm: "Xác nhận xóa?"} do %>
+      <em class="fa fa-trash"></em>
+    <% end %>
+  </td>
+  <td><%= link_to nhaphang.sanpham.ten, admin_sanpham_path(nhaphang.sanpham) %></td>
+  <td><%= nhaphang.soluong %></td>
+  <td><%= nhaphang.created_at %></td>
+</tr>

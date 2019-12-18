@@ -1,9 +1,9 @@
 module Admin::BooksHelper
   def select_category
-    Category.all.map{|c| [c.name, c.id]}
+    Loaisp.all.map{|c| [c.ten, c.id]}
   end
 
-  def select_import
-    Import.all.map{|p| [p.book.name, p.book.id]}.uniq
+  def select_nhaphang
+    Nhaphang.all.map{|p| [p.sanpham.ten, p.sanpham.id]}.uniq
   end
 end

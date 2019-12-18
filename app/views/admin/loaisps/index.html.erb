@@ -6,10 +6,10 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col col-xs-6">
-              <h3 class="panel-title"><b>Loại sách</b></h3>
+              <h3 class="panel-title"><b>Loại sản phẩm</b></h3>
             </div>
             <div class="col col-xs-6 text-right">
-                <%= link_to new_admin_category_path do %>
+                <%= link_to new_admin_loaisp_path do %>
                   <button type="button" class="btn btn-sm btn-primary btn-create">
                     Thêm
                   </button>
@@ -22,16 +22,15 @@
             <thead>
               <tr>
                 <th><em class="fa fa-cog"></em></th>
-                <th>Tên loại sách</th>
+                <th>Tên loại</th>
               </tr>
             </thead>
             <tbody>
-              <%= render @categories %>
+              <%= render @loaisps %>
             </tbody>
           </table>
         </div>
       </div>
-      <%= will_paginate %>
     </div>
   </content>
 </div>

@@ -2,9 +2,9 @@ class BooksController < ApplicationController
   before_action :load_book, only: :show
 
   def index
-    @books = Book.newest
+    @sanphams = Sanpham.newest
     if params[:search] && params[:search][:key]
-      @books = @books.where('name LIKE ? OR author LIKE ?', "%#{params[:search][:key]}%", "%#{params[:search][:key]}%")
+      @sanphams = @sanphams.where('ten LIKE ? OR thuonghieu LIKE ?', "%#{params[:search][:key]}%", "%#{params[:search][:key]}%")
     end
   end
 

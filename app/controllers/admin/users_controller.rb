@@ -7,7 +7,7 @@ class Admin::UsersController < AdminController
     else
       @users = User.all
     end
-    @users = @users.alphabet.paginate page: params[:page],
+    @users = @users.paginate page: params[:page],
       per_page: 5
   end
 
@@ -48,7 +48,7 @@ class Admin::UsersController < AdminController
   private
 
   def user_params
-    params.require(:user).permit :name, :email, :phone, :address,
+    params.require(:user).permit :ten, :email, :sdt, :diachi,
       :password, :password_confirmation, :role
   end
 

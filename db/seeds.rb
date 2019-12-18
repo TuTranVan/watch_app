@@ -3,4 +3,5 @@ User.create!(ten: "Admin",
              password: "123456",
              password_confirmation: "123456",
              sdt: "0764423228",
-             diachi: "Đà Nẵng")
+             diachi: "Đà Nẵng",
+             role: 1)
