@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190418072901) do
+ActiveRecord::Schema.define(version: 20191218100337) do
 
   create_table "binhluans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -36,9 +36,7 @@ ActiveRecord::Schema.define(version: 20190418072901) do
   create_table "donhangs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.date "ngaydat"
-    t.string "hoten"
-    t.string "diachi"
-    t.string "sdt"
+    t.boolean "diachinhan", default: false
     t.date "tongtien"
     t.integer "trangthai", default: 0
     t.datetime "created_at", null: false
@@ -50,6 +48,16 @@ ActiveRecord::Schema.define(version: 20190418072901) do
     t.string "ten"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "nguoinhans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "donhang_id"
+    t.string "hoten"
+    t.string "diachi"
+    t.string "sdt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["donhang_id"], name: "index_nguoinhans_on_donhang_id"
   end
 
   create_table "nhaphangs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -93,6 +101,7 @@ ActiveRecord::Schema.define(version: 20190418072901) do
   add_foreign_key "chitietdhs", "donhangs"
   add_foreign_key "chitietdhs", "sanphams"
   add_foreign_key "donhangs", "users"
+  add_foreign_key "nguoinhans", "donhangs"
   add_foreign_key "nhaphangs", "sanphams"
   add_foreign_key "nhaphangs", "users"
   add_foreign_key "sanphams", "loaisps"

@@ -1,6 +1,7 @@
 class Donhang < ApplicationRecord
   belongs_to :user
   has_many :chitietdhs, dependent: :destroy
+  has_one :nguoinhan, dependent: :destroy
 
 
   enum status: {ordering: 0, shiping: 1, finish: 2}
