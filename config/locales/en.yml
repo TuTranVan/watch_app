@@ -2,6 +2,7 @@ en:
   user_role:
     admin: "Quản trị viên"
     user: "Người dùng"
+    shipper: "Nhân viên giao hàng"
   status_request:
     ordering: "Xử lí giao hàng"
     shiping: "Nhận hàng thành công"

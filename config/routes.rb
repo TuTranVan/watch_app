@@ -9,15 +9,10 @@ Rails.application.routes.draw do
     resources :nhaphangs, only: [:create, :index, :destroy]
     resources :donhangs, except: [:new, :create, :edit] do
       member do
-        get :confirm
         get :finish
       end
-    end
-    resources :request_details, only: [:index] do
-      member do
-        get :normal
-        get :damage
-        get :miss
+      collection do
+        post :confirm
       end
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191218100337) do
+ActiveRecord::Schema.define(version: 20191219042557) do
 
   create_table "binhluans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20191218100337) do
     t.integer "trangthai", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "magh"
     t.index ["user_id"], name: "index_donhangs_on_user_id"
   end
 

@@ -1,38 +1,54 @@
 <% provide :title, @donhang.user.ten %>
 <%= render "admin/static_pages/layout" %>
   <content class="col-md-10 content">
-    <div class="col-md-4">
-      <ul>
-        <p>Người đặt: <b><%= @donhang.user.ten %></b></p><hr>
-        <p>Số điện thoại: <b><%= @donhang.user.sdt %></b></p><hr>
-        <p>Ngày đặt: <b><%= @donhang.ngaydat %></b></p><hr>
-      </ul>
-      <% if @donhang.diachinhan? %>
+    <div class="row">
+      <div class="col-md-4">
         <ul>
-          <p>Người nhận hàng: <b><%= @donhang.nguoinhans.first.hoten %></b></p><hr>
-          <p>Địa chỉ: <b><%= @donhang.nguoinhans.first.diachi %></b></p><hr>
-          <p>Số điện thoại: <b><%= @donhang.nguoinhans.first.sdt %></b></p><hr>
+          <p>Người đặt hàng: <b><%= @donhang.user.ten %></b></p><hr>
+          <p>Địa chỉ: <b><%= @donhang.user.diachi %></b></p><hr>
+          <p>Số điện thoại: <b><%= @donhang.user.sdt %></b></p><hr>
         </ul>
-      <% end %>
-      <div>
-        <% if @donhang.ordering? %>
-          <%= link_to confirm_admin_donhang_path(@donhang), class: "btn btn-primary" do %>
-            <%= t "status_request.#{@donhang.trangthai}" %>
-          <% end %>
+      </div>
+      <div class="col-md-4">
+        <% if @donhang.diachinhan? %>
+          <ul>
+            <p>Người nhận hàng: <b><%= @donhang.nguoinhans.first.hoten %></b></p><hr>
+            <p>Địa chỉ: <b><%= @donhang.nguoinhans.first.diachi %></b></p><hr>
+            <p>Số điện thoại: <b><%= @donhang.nguoinhans.first.sdt %></b></p><hr>
+          </ul>
+        <% else %>
+          <ul>
+            <p>Người nhận hàng: <b><%= @donhang.user.ten %></b></p><hr>
+            <p>Địa chỉ: <b><%= @donhang.user.diachi %></b></p><hr>
+            <p>Số điện thoại: <b><%= @donhang.user.sdt %></b></p><hr>
+          </ul>
         <% end %>
-        <% if @donhang.shiping? %>
-          <%= link_to finish_admin_donhang_path(@donhang), class: "btn btn-success" do %>
-            <%= t "status_request.#{@donhang.trangthai}" %>
-          <% end %>
-        <% end %>
-        <% if @donhang.finish? %>
-          <%= link_to "#", class: "btn btn-warning" do %>
-            <%= t "status_request.#{@donhang.trangthai}" %>
-          <% end %>
+      </div>
+      <div class="col-md-4">
+        <% unless @donhang.magh.nil? %>
+          <ul>
+            <p>Nhân viên giao hàng: <b><%= @donhang.giaohang.ten %></b></p><hr>
+            <p>Địa chỉ: <b><%= @donhang.giaohang.diachi %></b></p><hr>
+            <p>Số điện thoại: <b><%= @donhang.giaohang.sdt %></b></p><hr>
+          </ul>
         <% end %>
       </div>
     </div>
-    <div class="col-md-8">
+    <div class="row">
+      <% if @donhang.ordering? %>
+        <%= render "confirm", donhang: @donhang %>
+      <% end %>
+      <% if @donhang.shiping? %>
+        <%= link_to finish_admin_donhang_path(@donhang), class: "btn btn-success" do %>
+          <%= t "status_request.#{@donhang.trangthai}" %>
+        <% end %>
+      <% end %>
+      <% if @donhang.finish? %>
+        <button class="btn btn-warning"><%= t "status_request.#{@donhang.trangthai}" %></button>
+      <% end %>
+    </div>
+    <hr>
+    <div class="row">
       <table class="table table-striped table-bordered table-list">
         <thead>
           <tr>

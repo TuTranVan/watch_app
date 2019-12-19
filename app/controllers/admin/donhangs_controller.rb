@@ -1,5 +1,5 @@
 class Admin::DonhangsController < AdminController
-  before_action :load_donhang, only: %i(show confirm finish)
+  before_action :load_donhang, only: %i(show finish)
 
   def index
     if params[:request] && params[:request][:status]
@@ -10,34 +10,22 @@ class Admin::DonhangsController < AdminController
     @donhangs = @donhangs.order_status
   end
 
-  def show; end
-
   def confirm
-    @request.processing!
-    redirect_to admin_requests_path
+    @donhang = Donhang.find_by id: params[:donhang][:id]
+    @donhang.magh = params[:donhang][:magh]
+    @donhang.shiping!
+    @donhang.save
+    flash[:success] = "Xử lí thành công!"
+    redirect_to admin_donhang_path(@donhang)
   end
 
   def finish
-    @request.real_date = Date.current
-    if @request.real_date > @request.to_date
-      @request.forfeit = @request.forfeit + 2000*(real_date - to_date).to_i
-    end
-    @request.request_details.each do |detail|
-      if detail.miss?
-        @request.forfeit = @request.forfeit + detail.book.price
-      else
-        book = detail.book
-        book.quantity = book.quantity + 1
-        book.save
-        if detail.damage?
-          @request.forfeit = @request.forfeit + 0.3*detail.book.price
-        end
-      end
-    end
-    @request.finish!
-    flash[:success] = "Xử lý thành công!"
-    redirect_to admin_requests_path
+    @donhang.finish!
+    flash[:success] = "Xử lí thành công!"
+    redirect_to admin_donhang_path(@donhang)
   end
+
+  def show; end
 
   private
 

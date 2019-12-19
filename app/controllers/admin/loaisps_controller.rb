@@ -32,9 +32,9 @@ class Admin::LoaispsController < AdminController
 
   def destroy
     if @loaisp.destroy
-      flash[:success] = "Xóa loại sách thành công!"
+      flash[:success] = "Xóa thành công!"
     else
-      flash[:danger] = "Xóa loại sách thất bại!"
+      flash[:danger] = "Xóa thất bại!"
     end
     redirect_to admin_loaisps_path
   end

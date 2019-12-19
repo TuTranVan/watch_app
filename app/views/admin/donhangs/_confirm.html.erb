@@ -1,0 +1,14 @@
+<%= form_for(:donhang, url: confirm_admin_donhangs_path, method: :post) do |f| %>
+  <div class="form-group">
+    <%= f.hidden_field :id, class: "form-control", value: donhang.id  %>
+  </div>
+
+  <div class="form-group col-md-5">
+    <%= f.select(:magh, select_shipper, 
+    {:include_blank => "Chọn nhân viên giao hàng"}, {class: "form-control", required: true}) %>
+  </div>
+
+  <div class="form-group col-md-3">
+    <%= f.submit t("status_request.#{donhang.trangthai}"), class: "btn btn-warning btn-block" %>
+  </div>
+<% end %>
