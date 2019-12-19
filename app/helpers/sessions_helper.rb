@@ -43,7 +43,7 @@ module SessionsHelper
   end
 
   def select_request
-    Request.statuses.keys.map {|status| [t("status_request_profile.#{status}"), status]}
+    Donhang.trangthais.keys.map {|status| [t("status_request_profile.#{status}"), status]}
   end
 
   def comment_of_user? binhluan

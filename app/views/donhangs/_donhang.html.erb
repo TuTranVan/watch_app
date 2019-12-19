@@ -1,0 +1,21 @@
+<tr>
+  <td align="center">
+    <%= link_to donhang_path(donhang), class: "btn btn-default" do %>
+      <em class="fa fa-eye"></em>
+    <% end %>
+  </td>
+  <td><%= donhang.id %></td>
+  <td><%= donhang.ngaydat %></td>
+  <td><%= number_with_delimiter(donhang.tongtien, delimiter: ".") %></td>
+  <td>
+    <% if donhang.ordering? %>
+      <button class="btn btn-primary"><%= t "status_request_profile.#{donhang.trangthai}" %></button>
+    <% end %>
+    <% if donhang.shiping? %>
+      <button class="btn btn-success"><%= t "status_request_profile.#{donhang.trangthai}" %></button>
+    <% end %>
+    <% if donhang.finish? %>
+      <button class="btn btn-danger"><%= t "status_request_profile.#{donhang.trangthai}" %></button>
+    <% end %>
+  </td>
+</tr>

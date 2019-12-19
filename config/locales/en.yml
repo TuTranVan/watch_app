@@ -3,11 +3,11 @@ en:
     admin: "Quản trị viên"
     user: "Người dùng"
   status_request:
-    start: "Nhận sách"
-    processing: "Trả sách"
+    ordering: "Xử lí giao hàng"
+    shiping: "Nhận hàng thành công"
     finish: "Hoàn tất"
   status_request_profile:
-    start: "Chưa nhận"
-    processing: "Đang mượn"
+    ordering: "Đang chờ xử lí"
+    shiping: "Đang giao hàng"
     finish: "Hoàn tất"
 

@@ -1,0 +1,20 @@
+<%= form_for(:donhang, url: donhangs_path, method: :post) do |f| %>
+  <div class="form-group">
+    <%= f.hidden_field :diachinhan, class: "form-control", value: true  %>
+  </div>
+  <div class="form-group">
+    <p class="control-label">Họ tên:</p>
+    <%= f.text_field :hoten, class: "form-control", required: true %>
+  </div>
+  <div class="form-group">
+    <p class="control-label">Địa chỉ:</p>
+    <%= f.text_field :diachi, class: "form-control", required: true %>
+  </div>
+  <div class="form-group">
+    <p class="control-label">Số điện thoại:</p>
+    <%= f.text_field :sdt, class: "form-control", required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "ĐẶT HÀNG", class: "btn btn-warning btn-block" %>
+  </div>
+<% end %>

@@ -1,32 +1,33 @@
-<% provide :title, @request.user.name %>
+<% provide :title, @donhang.user.ten %>
 <%= render "admin/static_pages/layout" %>
   <content class="col-md-10 content">
     <div class="col-md-4">
       <ul>
-        <p><b>Người mượn:</b> <%= @request.user.name %></p><hr>
-        <p><b>Địa chỉ:</b> <%= @request.user.address %></p><hr>
-        <p><b>ID yêu cầu:</b> <%= @request.id %></p><hr>
-        <p><b>Ngày mượn:</b> <%= @request.from_date %></p><hr>
-        <p><b>Ngày hẹn trả:</b> <%= @request.to_date %></p><hr>
+        <p>Người đặt: <b><%= @donhang.user.ten %></b></p><hr>
+        <p>Số điện thoại: <b><%= @donhang.user.sdt %></b></p><hr>
+        <p>Ngày đặt: <b><%= @donhang.ngaydat %></b></p><hr>
       </ul>
+      <% if @donhang.diachinhan? %>
+        <ul>
+          <p>Người nhận hàng: <b><%= @donhang.nguoinhans.first.hoten %></b></p><hr>
+          <p>Địa chỉ: <b><%= @donhang.nguoinhans.first.diachi %></b></p><hr>
+          <p>Số điện thoại: <b><%= @donhang.nguoinhans.first.sdt %></b></p><hr>
+        </ul>
+      <% end %>
       <div>
-        <% if @request.start? %>
-          <%= link_to confirm_admin_request_path(@request), class: "btn btn-primary" do %>
-            <%= t "status_request.#{@request.status}" %>
-          <% end %>
-          <%= link_to admin_request_path(@request), method: :delete,
-            class: "btn btn-danger", data: {confirm: "Xác nhận hủy?"} do %>
-            <em class="fa fa-trash"></em>
+        <% if @donhang.ordering? %>
+          <%= link_to confirm_admin_donhang_path(@donhang), class: "btn btn-primary" do %>
+            <%= t "status_request.#{@donhang.trangthai}" %>
           <% end %>
         <% end %>
-        <% if @request.processing? %>
-          <%= link_to finish_admin_request_path(@request), class: "btn btn-success" do %>
-            <%= t "status_request.#{@request.status}" %>
+        <% if @donhang.shiping? %>
+          <%= link_to finish_admin_donhang_path(@donhang), class: "btn btn-success" do %>
+            <%= t "status_request.#{@donhang.trangthai}" %>
           <% end %>
         <% end %>
-        <% if @request.finish? %>
+        <% if @donhang.finish? %>
           <%= link_to "#", class: "btn btn-warning" do %>
-            <%= t "status_request.#{@request.status}" %>
+            <%= t "status_request.#{@donhang.trangthai}" %>
           <% end %>
         <% end %>
       </div>
@@ -36,12 +37,14 @@
         <thead>
           <tr>
             <th>Hình ảnh</th>
-            <th>Tên sách</th>
-            <th class="text-center">Tình trạng</th>
+            <th>Tên sản phẩm</th>
+            <th>Thương hiệu</th>
+            <th>Đơn giá</th>
+            <th>Số lượng</th>
           </tr>
         </thead>
         <tbody>
-          <%= render @request.request_details %>
+          <%= render @donhang.chitietdhs %>
         </tbody>
       </table>
     </div>

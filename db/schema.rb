@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20191218100337) do
     t.bigint "user_id"
     t.date "ngaydat"
     t.boolean "diachinhan", default: false
-    t.date "tongtien"
+    t.integer "tongtien"
     t.integer "trangthai", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -7,8 +7,7 @@ class Admin::SanphamsController < AdminController
     else
       @sanphams = Sanpham.all
     end
-    @sanphams = @sanphams.newest.paginate page: params[:page],
-      per_page: 5
+    @sanphams = @sanphams.newest
   end
 
   def new

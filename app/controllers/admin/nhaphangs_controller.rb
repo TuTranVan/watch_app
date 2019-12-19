@@ -2,7 +2,7 @@ class Admin::NhaphangsController < AdminController
   before_action :load_nhaphang, only: %i(destroy)
 
   def index
-    @nhaphangs = Nhaphang.newest.paginate page: params[:page], per_page: 5
+    @nhaphangs = Nhaphang.newest
   end
 
   def create

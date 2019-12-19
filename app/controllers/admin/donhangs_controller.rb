@@ -1,30 +1,16 @@
 class Admin::DonhangsController < AdminController
-  before_action :load_request, only: %i(show destroy confirm finish)
+  before_action :load_donhang, only: %i(show confirm finish)
 
   def index
     if params[:request] && params[:request][:status]
-      @requests = Request.by_status params[:request][:status]
+      @donhangs = Donhang.by_status params[:request][:status]
     else
-      @requests = Request.all
+      @donhangs = Donhang.all
     end
-    @requests = @requests.order_status.paginate page: params[:page], per_page: 5
+    @donhangs = @donhangs.order_status
   end
 
   def show; end
-
-  def destroy
-    @request.request_details.each do |detail|
-      book = detail.book
-      book.quantity = book.quantity + 1
-      book.save
-    end
-    if @request.destroy
-      flash[:success] = "Hủy yêu cầu thành công!"
-    else
-      flash[:danger] = "Hủy yêu cầu thất bại!"
-    end
-    redirect_to admin_requests_path
-  end
 
   def confirm
     @request.processing!
@@ -55,9 +41,9 @@ class Admin::DonhangsController < AdminController
 
   private
 
-  def load_request
-    @request = Request.find_by id: params[:id]
-    return if @request
-    redirect_to admin_requests_path
+  def load_donhang
+    @donhang = Donhang.find_by id: params[:id]
+    return if @donhang
+    redirect_to admin_donhangs_path
   end
 end

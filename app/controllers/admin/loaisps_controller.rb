@@ -2,8 +2,7 @@ class Admin::LoaispsController < AdminController
   before_action :load_loaisp, only: %i(edit update destroy)
 
   def index
-    @loaisps = Loaisp.paginate page: params[:page],
-      per_page: 5
+    @loaisps = Loaisp.all
   end
 
   def new

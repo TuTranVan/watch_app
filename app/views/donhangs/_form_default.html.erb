@@ -1,0 +1,12 @@
+<%= form_for(:donhang, url: donhangs_path, method: :post) do |f| %>
+  <p>Người nhận hàng: <b><%= current_user.ten %></b></p>
+  <p>Địa chỉ: <b><%= current_user.diachi %></b></p>
+  <p>Số điện thoại: <b><%= current_user.sdt %></b></p>
+
+  <div class="form-group">
+    <%= f.hidden_field :diachinhan, class: "form-control", value: false  %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "ĐẶT HÀNG", class: "btn btn-warning btn-block" %>
+  </div>
+<% end %>

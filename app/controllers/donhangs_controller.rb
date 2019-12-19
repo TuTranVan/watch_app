@@ -1,41 +1,39 @@
 class DonhangsController < ApplicationController
-  before_action :load_request, only: %i(show)
+  before_action :load_donhang, only: %i(show)
 
   def create
-    @request = current_user.requests.build request_params
-    @request.to_date = @request.from_date + 30
-    if @request.save
-      cart.each do |book|
-        rd = @request.request_details.build book_id: book['id']
-        rd.save
-        b = load_book book['id']
-        b.quantity = b.quantity - 1
-        b.save
-      end
-      cart.clear
-      flash[:success] = "Mượn sách thành công!"
-      redirect_to current_user
-    else
-      flash[:danger] = "Có lỗi trong quá trình mượn sách. Vui lòng kiểm tra thông tin!"
-      redirect_to carts_path
+    @donhang = current_user.donhangs.build
+    @donhang.ngaydat = Date.current
+    @donhang.tongtien = cart_shop.map(&:dongia).sum.to_i
+    @donhang.diachinhan = params[:donhang][:diachinhan] == "true" ? true : false
+    @donhang.save
+    if @donhang.diachinhan?
+      @nguoinhan = @donhang.nguoinhans.build
+      @nguoinhan.hoten = params[:donhang][:hoten]
+      @nguoinhan.diachi = params[:donhang][:diachi]
+      @nguoinhan.sdt = params[:donhang][:sdt]
+      @nguoinhan.save
     end
+    cart_shop.each do |sanpham|
+      chitiet = @donhang.chitietdhs.build sanpham_id: sanpham.id
+      chitiet.soluong = 1
+      chitiet.dongia = sanpham.dongia
+      chitiet.save
+      sanpham.soluong -= 1
+      sanpham.save
+    end
+    cart.clear
+    flash[:success] = "Đặt hàng thành công!"
+    redirect_to current_user
   end
 
   def show; end
 
   private
 
-  def request_params
-    params.require(:request).permit :from_date
-  end
-
-  def load_request
-    @request = Request.find_by id: params[:id]
-    return if @request
+  def load_donhang
+    @donhang = Donhang.find_by id: params[:id]
+    return if @donhang
     redirect_to current_user
-  end
-
-  def load_book id
-    book = Book.find_by id: id
   end
 end

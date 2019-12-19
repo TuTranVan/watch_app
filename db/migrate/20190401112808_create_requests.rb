@@ -4,7 +4,7 @@ class CreateRequests < ActiveRecord::Migration[5.1]
       t.references :user, foreign_key: true
       t.date :ngaydat
       t.boolean :diachinhan, default: false
-      t.date :tongtien
+      t.integer :tongtien
       t.integer :trangthai, default: 0
       t.timestamps
     end
