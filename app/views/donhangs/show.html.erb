@@ -21,11 +21,30 @@
       </div>
     </div>
     <div class="col-md-9">
-      <% if @donhang.diachinhan? %>
-        <p>Người nhận hàng: <b><%= @donhang.nguoinhans.first.hoten %></b></p>
-        <p>Địa chỉ: <b><%= @donhang.nguoinhans.first.diachi %></b></p>
-        <p>Số điện thoại: <b><%= @donhang.nguoinhans.first.sdt %></b></p>
-      <% end %>
+      <div class="row">
+        <div class="col-md-4">
+          <ul>
+            <p>Người đặt hàng: <b><%= @donhang.user.ten %></b></p><hr>
+            <p>Địa chỉ: <b><%= @donhang.user.diachi %></b></p><hr>
+            <p>Số điện thoại: <b><%= @donhang.user.sdt %></b></p><hr>
+          </ul>
+        </div>
+        <div class="col-md-8">
+          <% if @donhang.diachinhan? %>
+            <ul>
+              <p>Người nhận hàng: <b><%= @donhang.nguoinhans.first.hoten %></b></p><hr>
+              <p>Địa chỉ: <b><%= @donhang.nguoinhans.first.diachi %></b></p><hr>
+              <p>Số điện thoại: <b><%= @donhang.nguoinhans.first.sdt %></b></p><hr>
+            </ul>
+          <% else %>
+            <ul>
+              <p>Người nhận hàng: <b><%= @donhang.user.ten %></b></p><hr>
+              <p>Địa chỉ: <b><%= @donhang.user.diachi %></b></p><hr>
+              <p>Số điện thoại: <b><%= @donhang.user.sdt %></b></p><hr>
+            </ul>
+          <% end %>
+        </div>
+      </div>
       <hr>
       <table class="table table-striped table-bordered table-list">
         <thead>

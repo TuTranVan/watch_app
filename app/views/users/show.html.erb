@@ -30,7 +30,11 @@
           </tr>
         </thead>
         <tbody>
+        <% if current_user.user? %>
           <%= render current_user.donhangs %>
+        <% else %>
+          <%= render current_user.dongiaohangs %>
+        <% end %>
         </tbody>
       </table>
     </div>

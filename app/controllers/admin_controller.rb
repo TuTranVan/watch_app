@@ -4,7 +4,7 @@ class AdminController < ApplicationController
   private
 
   def authorized?
-    return if current_user.admin?
+    return unless current_user.user? ||current_user.shipper?
     redirect_to current_user
   end
 end

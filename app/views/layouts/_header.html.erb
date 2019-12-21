@@ -29,7 +29,7 @@
                 <%= current_user.ten %><b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <% if current_user.admin? %>
+                <% unless current_user.user? || current_user.shipper? %>
                   <li><%= link_to "Quản trị hệ thống",admin_root_path %></li>
                 <% else %>
                   <li><%= link_to "Trang cá nhân", current_user %></li>

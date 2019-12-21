@@ -3,6 +3,7 @@ en:
     admin: "Quản trị viên"
     user: "Người dùng"
     shipper: "Nhân viên giao hàng"
+    warehouse: "Nhân viên nhập kho"
   status_request:
     ordering: "Xử lí giao hàng"
     shiping: "Nhận hàng thành công"
