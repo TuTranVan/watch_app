@@ -4,7 +4,7 @@ class DonhangsController < ApplicationController
   def create
     @donhang = current_user.donhangs.build
     @donhang.ngaydat = Date.current
-    @donhang.tongtien = cart_shop.map(&:dongia).sum.to_i
+    @donhang.tongtien = cart_total
     @donhang.diachinhan = params[:donhang][:diachinhan] == "true" ? true : false
     @donhang.save
     if @donhang.diachinhan?
@@ -14,12 +14,13 @@ class DonhangsController < ApplicationController
       @nguoinhan.sdt = params[:donhang][:sdt]
       @nguoinhan.save
     end
-    cart_shop.each do |sanpham|
+    cart_shop.each do |item|
+      sanpham = item[:sp]
       chitiet = @donhang.chitietdhs.build sanpham_id: sanpham.id
-      chitiet.soluong = 1
+      chitiet.soluong = item[:sl]
       chitiet.dongia = sanpham.dongia
       chitiet.save
-      sanpham.soluong -= 1
+      sanpham.soluong -= item[:sl]
       sanpham.save
     end
     cart.clear

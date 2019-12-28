@@ -4,12 +4,22 @@ module SessionsHelper
   end
 
   def cart_shop
-    Sanpham.find cart
+    cart.map{ |item|
+      { sp: Sanpham.find(item["id"]), sl: item["sl"] }
+    }
+  end
+
+  def cart_total
+    total = 0
+    cart_shop.each do |item|
+      total += item[:sp]["dongia"] * item[:sl]
+    end
+    total
   end
 
   def check_in?(book)
     cart.each do |item|
-      if item == book.id
+      if item["id"] == book.id
         return false
       end
     end
