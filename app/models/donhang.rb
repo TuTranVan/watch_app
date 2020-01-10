@@ -1,8 +1,8 @@
 class Donhang < ApplicationRecord
-  belongs_to :user
-  has_many :chitietdhs, dependent: :destroy
-  has_many :nguoinhans, dependent: :destroy
-  belongs_to :giaohang, class_name: User.name, foreign_key: "magh", optional: true
+  belongs_to :nguoidung, class_name: Nguoidung.name, foreign_key: "mand", optional: true
+  has_many :chitietdhs, dependent: :destroy, class_name: Chitietdh.name, foreign_key: "madh"
+  has_many :nguoinhans, dependent: :destroy, class_name: Nguoinhan.name, foreign_key: "madh"
+  belongs_to :giaohang, class_name: Nguoidung.name, foreign_key: "magh", optional: true
 
   enum trangthai: {ordering: 0, shiping: 1, finish: 2}
 

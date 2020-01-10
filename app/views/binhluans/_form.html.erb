@@ -1,5 +1,5 @@
 <%= form_for Binhluan.new do |f| %>
-  <%= f.hidden_field :sanpham_id, value: @sanpham.id %>
+  <%= f.hidden_field :masp, value: @sanpham.id %>
 
   <div class="form-group">
     <%= f.text_field :noidung, class: "form-control", required: true %>

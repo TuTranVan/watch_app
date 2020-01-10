@@ -1,14 +1,15 @@
-class UsersController < ApplicationController
+class NguoidungsController < ApplicationController
   before_action :load_user, only: %i(show edit update)
   before_action :logged_in_user, only: %i(show edit update)
   before_action :correct_user, only: %i(show edit update)
 
   def new
-    @user = User.new
+    @user = Nguoidung.new
   end
 
   def create
-    @user = User.new user_params
+    @user = Nguoidung.new user_params
+    @user.mand = "ND#{Nguoidung.last.mand.last.to_i + 1}"
     if @user.save
       flash[:success] = "Đăng ký thành công!!"
       log_in @user
@@ -35,19 +36,19 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit :ten, :email, :sdt, :diachi,
+    params.require(:nguoidung).permit :ten, :email, :sdt, :diachi,
       :password, :password_confirmation, :role
   end
 
   def load_user
-    @user = User.find_by id: params[:id]
+    @user = Nguoidung.find_by mand: params[:id]
     return if @user
     flash[:danger] = "controller.user.load_fail"
     redirect_to login_path
   end
 
   def correct_user
-    @user = User.find_by id: params[:id]
+    @user = Nguoidung.find_by mand: params[:id]
     return if current_user?(@user)
     flash[:danger] = "controller.user.incorrect"
     redirect_to current_user

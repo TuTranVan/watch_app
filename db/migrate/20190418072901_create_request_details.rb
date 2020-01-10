@@ -1,8 +1,8 @@
 class CreateRequestDetails < ActiveRecord::Migration[5.1]
   def change
     create_table :chitietdhs do |t|
-      t.references :donhang, foreign_key: true
-      t.references :sanpham, foreign_key: true
+      t.string :madh
+      t.string :masp
       t.integer :soluong, default: false
       t.integer :dongia, default: false
       t.timestamps

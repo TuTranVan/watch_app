@@ -7,6 +7,11 @@ class Admin::NhaphangsController < AdminController
 
   def create
     @nhaphang = current_user.nhaphangs.build nhaphang_params
+    if Nhaphang.all.any?
+      @nhaphang.manh = "NH#{Nhaphang.last.manh.last.to_i + 1}"
+    else
+      @nhaphang.manh = "NH1"
+    end
     if @nhaphang.save
       flash[:success] = "Cập nhật thành công"
       sanpham = @nhaphang.sanpham
@@ -33,11 +38,11 @@ class Admin::NhaphangsController < AdminController
   private
 
   def nhaphang_params
-    params.require(:nhaphang).permit :sanpham_id, :soluong
+    params.require(:nhaphang).permit :masp, :soluong
   end
 
   def load_nhaphang
-    @nhaphang = Nhaphang.find_by id: params[:id]
+    @nhaphang = Nhaphang.find_by manh: params[:id]
     return if @nhaphang
     redirect_to admin_nhaphangs_path
   end

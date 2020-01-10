@@ -1,0 +1,17 @@
+<tr>
+  <td align="center">
+    <%= link_to edit_admin_nguoidung_path(nguoidung),
+    class: "btn btn-default" do %>
+      <em class="fa fa-pencil"></em>
+    <% end %>
+    <%= link_to admin_nguoidung_path(nguoidung), method: :delete,
+      class: "btn btn-danger", data: {confirm: "Xác nhận xóa?"} do %>
+      <em class="fa fa-trash"></em>
+    <% end %>
+  </td>
+  <td><%= nguoidung.ten %></td>
+  <td><%= nguoidung.email %></td>
+  <td><%= nguoidung.sdt %></td>
+  <td><%= nguoidung.diachi %></td>
+  <td><%= t "user_role.#{nguoidung.role}" %></td>
+</tr>

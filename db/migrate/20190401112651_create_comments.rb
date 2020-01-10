@@ -1,8 +1,9 @@
 class CreateComments < ActiveRecord::Migration[5.1]
   def change
-    create_table :binhluans do |t|
-      t.references :user, foreign_key: true
-      t.references :sanpham, foreign_key: true
+    create_table :binhluans, id: false do |t|
+      t.string :mabl, primary_key: true
+      t.string :mand
+      t.string :masp
       t.text :noidung
       t.timestamps
     end

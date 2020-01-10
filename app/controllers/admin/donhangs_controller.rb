@@ -1,5 +1,7 @@
 class Admin::DonhangsController < AdminController
   before_action :load_donhang, only: %i(show finish)
+  skip_before_action :authorized?, only: :finish
+
 
   def index
     if params[:request] && params[:request][:status]
@@ -11,7 +13,7 @@ class Admin::DonhangsController < AdminController
   end
 
   def confirm
-    @donhang = Donhang.find_by id: params[:donhang][:id]
+    @donhang = Donhang.find_by madh: params[:donhang][:id]
     @donhang.magh = params[:donhang][:magh]
     @donhang.shiping!
     @donhang.save
@@ -30,7 +32,7 @@ class Admin::DonhangsController < AdminController
   private
 
   def load_donhang
-    @donhang = Donhang.find_by id: params[:id]
+    @donhang = Donhang.find_by madh: params[:id]
     return if @donhang
     redirect_to admin_donhangs_path
   end

@@ -7,7 +7,7 @@ class CartsController < ApplicationController
       if @sanpham.soluong == 0
         flash[:danger] = "Sản phẩm hiện đang hết!"
       else
-        cart << { id: @sanpham.id, sl: 1 }
+        cart << { masp: @sanpham.masp, sl: 1 }
       end
     end
     redirect_to carts_path
@@ -15,14 +15,14 @@ class CartsController < ApplicationController
 
   def update_cart
     cart.each { |item|
-      item["sl"] = params[:cart][:sl].to_i if item["id"] == params[:cart][:id].to_i
+      item["sl"] = params[:cart][:sl].to_i if item["masp"] == params[:cart][:masp]
     }
     flash[:success] = "Cập nhật thành công!"
     redirect_to carts_path
   end
 
   def remove_cart
-    cart.delete_if { |x| x["id"] == @sanpham.id }
+    cart.delete_if { |x| x["masp"] == @sanpham.masp }
     redirect_to carts_path
   end
 
@@ -34,7 +34,7 @@ class CartsController < ApplicationController
   private
 
   def load_sanpham
-    @sanpham = Sanpham.find_by id: params[:id]
+    @sanpham = Sanpham.find_by masp: params[:id]
     return if @sanpham
     redirect_to root_path
   end

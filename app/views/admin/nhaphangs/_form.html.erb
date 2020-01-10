@@ -1,6 +1,6 @@
 <%= form_for [:admin, current_user.nhaphangs.build] do |f| %>
 
-  <%= f.hidden_field :sanpham_id, value: @sanpham.id %>
+  <%= f.hidden_field :masp, value: @sanpham.id %>
 
   <div class="form-group">
     <%= f.number_field :soluong, class: "form-control", placeholder: "Số lượng", min: 1 %>

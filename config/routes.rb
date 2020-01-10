@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     root "static_pages#index"
     resources :loaisps, except: :show
     resources :sanphams
-    resources :users, except: :show
+    resources :nguoidungs, except: :show
     resources :nhaphangs, only: [:create, :index, :destroy]
     resources :donhangs, except: [:new, :create, :edit] do
       member do
@@ -17,8 +17,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/signup", to: "users#new"
-  post "/signup", to: "users#create"
+  get "/signup", to: "nguoidungs#new"
+  post "/signup", to: "nguoidungs#create"
 
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
@@ -37,6 +37,6 @@ Rails.application.routes.draw do
     end
   end
   resources :donhangs, only: [:create, :show]
-  resources :users
+  resources :nguoidungs
   resources :binhluans, only: %i(create destroy)
 end

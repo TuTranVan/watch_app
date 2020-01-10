@@ -3,11 +3,14 @@
     <%= link_to admin_sanpham_path(sanpham), class: "btn btn-default" do %>
       <em class="fa fa-eye"></em>
     <% end %>
-    <%= link_to admin_sanpham_path(sanpham), method: :delete, class: "btn btn-danger",
-      data: {confirm: "Xác nhận xóa?"} do %>
-      <em class="fa fa-trash"></em>
+    <% if current_user.admin? %>
+      <%= link_to admin_sanpham_path(sanpham), method: :delete, class: "btn btn-danger",
+        data: {confirm: "Xác nhận xóa?"} do %>
+        <em class="fa fa-trash"></em>
+      <% end %>
     <% end %>
   </td>
+  <td><%= sanpham.masp %></td>
   <td><%= sanpham.ten %></td>
   <td><%= sanpham.loaisp_ten %></td>
   <td><%= sanpham.thuonghieu %></td>
