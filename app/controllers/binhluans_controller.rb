@@ -4,6 +4,11 @@ class BinhluansController < ApplicationController
 
   def create
     @binhluan = current_user.binhluans.build binhluans_params
+    if Binhluan.all.any?
+      @binhluan.mabl = "BL#{Binhluan.last.mabl.last.to_i + 1}"
+    else
+      @binhluan.mabl = "BL1"
+    end
     if @binhluan.save
       redirect_to @binhluan.sanpham
     else
@@ -22,11 +27,11 @@ class BinhluansController < ApplicationController
   private
 
   def binhluans_params
-    params.require(:binhluan).permit :sanpham_id, :noidung
+    params.require(:binhluan).permit :masp, :noidung
   end
 
   def load_binhluan
-    @binhluan = current_user.binhluans.find_by id: params[:id]
+    @binhluan = current_user.binhluans.find_by mabl: params[:id]
     return if @binhluan
     redirect_to root_path
   end

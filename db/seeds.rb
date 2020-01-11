@@ -1,4 +1,5 @@
-User.create!(ten: "Admin",
+Nguoidung.create!(mand: "ND1",
+             ten: "Admin",
              email: "admin@gmail.com",
              password: "123456",
              password_confirmation: "123456",

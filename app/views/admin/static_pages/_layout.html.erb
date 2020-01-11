@@ -2,36 +2,44 @@
   <aside class="col-md-2">
     <div class="sidebar">
       <ul class="list-sidebar bg-defoult">
-        <li>
-          <%= link_to admin_root_path do %>
-            <i class="fa fa-home"></i>
-            <span class="nav-label">
-              Trang chủ
-            </span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to admin_donhangs_path do %>  <!-- admin_requests_path -->
-            <i class="fa fa-check-square"></i>
-            <span class="nav-label">Đơn hàng</span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to admin_users_path do %>
-            <i class="fa fa-user"></i>
-            <span class="nav-label">Người dùng</span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to admin_loaisps_path do %>
-            <i class="fa fa-cube"></i>
-            <span class="nav-label">Loại sản phẩm</span>
-          <% end %>
-        </li>
+        <% if current_user.admin? %>
+          <li>
+            <%= link_to admin_root_path do %>
+              <i class="fa fa-home"></i>
+              <span class="nav-label">
+                Trang chủ
+              </span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_donhangs_path do %>  <!-- admin_requests_path -->
+              <i class="fa fa-check-square"></i>
+              <span class="nav-label">Xử lí đơn hàng</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_nguoidungs_path do %>
+              <i class="fa fa-user"></i>
+              <span class="nav-label">Cập nhật người dùng</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_loaisps_path do %>
+              <i class="fa fa-cube"></i>
+              <span class="nav-label">Cập nhật loại SP</span>
+            <% end %>
+          </li>
+        <% end %>
         <li>
           <%= link_to admin_sanphams_path do %>
             <i class="fa fa-book"></i>
-            <span class="nav-label">Sản phẩm</span>
+            <span class="nav-label">
+              <% if current_user.admin? %>
+                Cập nhật sản phẩm
+              <% else %>
+                Nhập hàng
+              <% end %>
+            </span>
           <% end %>
         </li>
         <li>

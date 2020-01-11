@@ -2,6 +2,9 @@
   <%= render "shared/error_messages", object: @loaisp%>
 
   <div class="form-group">
+    <%= f.text_field :maloai, class: "form-control", placeholder: "Mã loại", required: true %>
+  </div>
+  <div class="form-group">
     <%= f.text_field :ten, class: "form-control", placeholder: "Tên loại", required: true %>
   </div>
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>

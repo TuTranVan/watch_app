@@ -32,7 +32,7 @@
                   </div>
                   <div class="col-md-3">
                     <%= form_for(:cart, url: update_cart_carts_path, method: :post) do |f| %>
-                        <%= f.hidden_field :id, class: "form-control", value: item[:sp].id  %>
+                        <%= f.hidden_field :masp, class: "form-control", value: item[:sp].masp  %>
                       <div class="col-md-8">
                         <%= f.number_field :sl, class: "form-control", value: item[:sl], min: 1, max: item[:sp].soluong %>
                       </div>

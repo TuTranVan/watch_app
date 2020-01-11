@@ -1,12 +1,12 @@
-<% provide :title, @donhang.user.ten %>
+<% provide :title, @donhang.nguoidung.ten %>
 <%= render "admin/static_pages/layout" %>
   <content class="col-md-10 content">
     <div class="row">
       <div class="col-md-4">
         <ul>
-          <p>Người đặt hàng: <b><%= @donhang.user.ten %></b></p><hr>
-          <p>Địa chỉ: <b><%= @donhang.user.diachi %></b></p><hr>
-          <p>Số điện thoại: <b><%= @donhang.user.sdt %></b></p><hr>
+          <p>Người đặt hàng: <b><%= @donhang.nguoidung.ten %></b></p><hr>
+          <p>Địa chỉ: <b><%= @donhang.nguoidung.diachi %></b></p><hr>
+          <p>Số điện thoại: <b><%= @donhang.nguoidung.sdt %></b></p><hr>
         </ul>
       </div>
       <div class="col-md-4">
@@ -18,9 +18,9 @@
           </ul>
         <% else %>
           <ul>
-            <p>Người nhận hàng: <b><%= @donhang.user.ten %></b></p><hr>
-            <p>Địa chỉ: <b><%= @donhang.user.diachi %></b></p><hr>
-            <p>Số điện thoại: <b><%= @donhang.user.sdt %></b></p><hr>
+            <p>Người nhận hàng: <b><%= @donhang.nguoidung.ten %></b></p><hr>
+            <p>Địa chỉ: <b><%= @donhang.nguoidung.diachi %></b></p><hr>
+            <p>Số điện thoại: <b><%= @donhang.nguoidung.sdt %></b></p><hr>
           </ul>
         <% end %>
       </div>
@@ -39,9 +39,7 @@
         <%= render "confirm", donhang: @donhang %>
       <% end %>
       <% if @donhang.shiping? %>
-        <%= link_to finish_admin_donhang_path(@donhang), class: "btn btn-success" do %>
-          <%= t "status_request.#{@donhang.trangthai}" %>
-        <% end %>
+        <button class="btn btn-success"><%= t "status_request_profile.#{@donhang.trangthai}" %></button>
       <% end %>
       <% if @donhang.finish? %>
         <button class="btn btn-warning"><%= t "status_request.#{@donhang.trangthai}" %></button>

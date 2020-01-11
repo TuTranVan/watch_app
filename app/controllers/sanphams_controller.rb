@@ -13,7 +13,7 @@ class SanphamsController < ApplicationController
   private
 
   def load_sanpham
-    @sanpham = Sanpham.find_by id: params[:id]
+    @sanpham = Sanpham.find_by masp: params[:id]
     return if @sanpham
     redirect_to root_path
   end

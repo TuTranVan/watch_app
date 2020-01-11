@@ -10,9 +10,11 @@
           <tr>
             <th><em class="fa fa-cog"></em></th>
             <th>
+            <% if current_user.admin? %>
               <%= link_to edit_admin_sanpham_path(@sanpham), class: "btn btn-default" do %>
                 <em class="fa fa-pencil"></em>
               <% end %>
+            <% end %>
               <!-- Button trigger modal -->
               <% if current_user.warehouse?%>
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#majors">
@@ -39,6 +41,10 @@
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td>Mã sản phẩm</td>
+            <td><%= @sanpham.masp %></td>
+          </tr>
           <tr>
             <td>Tên sản phẩm</td>
             <td><%= @sanpham.ten %></td>

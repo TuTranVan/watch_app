@@ -1,7 +1,8 @@
 class CreateBooks < ActiveRecord::Migration[5.1]
   def change
-    create_table :sanphams do |t|
-      t.references :loaisp, foreign_key: true
+    create_table :sanphams, id: false do |t|
+      t.string :masp, primary_key: true
+      t.string :maloai
       t.string :ten
       t.string :mausac
       t.string :thuonghieu

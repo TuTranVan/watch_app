@@ -1,13 +1,13 @@
 module Admin::BooksHelper
   def select_category
-    Loaisp.all.map{|c| [c.ten, c.id]}
+    Loaisp.all.map{|c| [c.ten, c.maloai]}
   end
 
   def select_nhaphang
-    Nhaphang.all.map{|p| [p.sanpham.ten, p.sanpham.id]}.uniq
+    Nhaphang.all.map{|p| [p.sanpham.ten, p.sanpham.masp]}.uniq
   end
 
   def select_shipper
-    User.shipper.map{|u| ["# #{u.id} - #{u.ten} - #{u.diachi} ", u.id]}.uniq
+    Nguoidung.shipper.map{|u| ["# #{u.mand} - #{u.ten} - #{u.diachi} ", u.mand]}.uniq
   end
 end

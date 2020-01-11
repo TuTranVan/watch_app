@@ -49,12 +49,12 @@ class Admin::SanphamsController < AdminController
   private
 
   def sanpham_params
-    params.require(:sanpham).permit :loaisp_id, :ten, :thuonghieu, :xuatsu,
+    params.require(:sanpham).permit :masp, :maloai, :ten, :thuonghieu, :xuatsu,
       :mausac, :baohanh, :soluong, :dongia, :hinhanh
   end
 
   def load_sanpham
-    @sanpham = Sanpham.find_by id: params[:id]
+    @sanpham = Sanpham.find_by masp: params[:id]
     return if @sanpham
     flash[:danger] = "Không tìm thấy sản phẩm!"
     redirect_to admin_sanphams_path

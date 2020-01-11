@@ -6,7 +6,7 @@ class LoaispsController < ApplicationController
   private
 
   def load_loaisp
-    @loaisp = Loaisp.find_by id: params[:id]
+    @loaisp = Loaisp.find_by maloai: params[:id]
     return if @loaisp
     redirect_to root_path
   end

@@ -42,11 +42,11 @@ class Admin::LoaispsController < AdminController
   private
 
   def loaisp_params
-    params.require(:loaisp).permit :ten
+    params.require(:loaisp).permit :ten, :maloai
   end
 
   def load_loaisp
-    @loaisp = Loaisp.find_by id: params[:id]
+    @loaisp = Loaisp.find_by maloai: params[:id]
     return if @loaisp
     redirect_to admin_loaisps_path
   end

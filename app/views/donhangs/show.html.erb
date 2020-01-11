@@ -24,9 +24,9 @@
       <div class="row">
         <div class="col-md-4">
           <ul>
-            <p>Người đặt hàng: <b><%= @donhang.user.ten %></b></p><hr>
-            <p>Địa chỉ: <b><%= @donhang.user.diachi %></b></p><hr>
-            <p>Số điện thoại: <b><%= @donhang.user.sdt %></b></p><hr>
+            <p>Người đặt hàng: <b><%= @donhang.nguoidung.ten %></b></p><hr>
+            <p>Địa chỉ: <b><%= @donhang.nguoidung.diachi %></b></p><hr>
+            <p>Số điện thoại: <b><%= @donhang.nguoidung.sdt %></b></p><hr>
           </ul>
         </div>
         <div class="col-md-8">
@@ -38,13 +38,18 @@
             </ul>
           <% else %>
             <ul>
-              <p>Người nhận hàng: <b><%= @donhang.user.ten %></b></p><hr>
-              <p>Địa chỉ: <b><%= @donhang.user.diachi %></b></p><hr>
-              <p>Số điện thoại: <b><%= @donhang.user.sdt %></b></p><hr>
+              <p>Người nhận hàng: <b><%= @donhang.nguoidung.ten %></b></p><hr>
+              <p>Địa chỉ: <b><%= @donhang.nguoidung.diachi %></b></p><hr>
+              <p>Số điện thoại: <b><%= @donhang.nguoidung.sdt %></b></p><hr>
             </ul>
           <% end %>
         </div>
       </div>
+      <% if @donhang.shiping? && current_user.shipper? %>
+        <%= link_to finish_admin_donhang_path(@donhang), class: "btn btn-success" do %>
+          <%= t "status_request.#{@donhang.trangthai}" %>
+        <% end %>
+      <% end %>
       <hr>
       <table class="table table-striped table-bordered table-list">
         <thead>

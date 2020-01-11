@@ -5,7 +5,7 @@ module SessionsHelper
 
   def cart_shop
     cart.map{ |item|
-      { sp: Sanpham.find(item["id"]), sl: item["sl"] }
+      { sp: Sanpham.find_by(masp: item["masp"]), sl: item["sl"] }
     }
   end
 
@@ -19,7 +19,7 @@ module SessionsHelper
 
   def check_in?(book)
     cart.each do |item|
-      if item["id"] == book.id
+      if item["masp"] == book.masp
         return false
       end
     end
@@ -27,12 +27,12 @@ module SessionsHelper
   end
 
   def log_in user
-    session[:user_id] = user.id
+    session[:user_id] = user.mand
   end
 
   def current_user
     return unless (user_id = session[:user_id])
-    @current_user ||= User.find_by id: user_id
+    @current_user ||= Nguoidung.find_by mand: user_id
   end
 
   def logged_in?
@@ -49,7 +49,7 @@ module SessionsHelper
   end
 
   def select_role
-    User.roles.keys.map {|role| [t("user_role.#{role}"), role]}
+    Nguoidung.roles.keys.map {|role| [t("user_role.#{role}"), role]}
   end
 
   def select_request
@@ -57,10 +57,6 @@ module SessionsHelper
   end
 
   def comment_of_user? binhluan
-    current_user.binhluans.find_by(id: binhluan.id).present?
-  end
-
-  def like? book
-    current_user.likes.find_by(book_id: book.id).present?
+    current_user.binhluans.find_by(mabl: binhluan.mabl).present?
   end
 end
